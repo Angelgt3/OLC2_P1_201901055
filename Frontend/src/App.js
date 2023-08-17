@@ -37,7 +37,7 @@ function App() {
       <div id ="M1">
         <Editor
           theme='vs-dark'
-          defaultLanguage="javascript" //lenguaje de ayuda monaco
+          defaultLanguage="Swift" //lenguaje de ayuda monaco
           value = {contenido} //el valor inicial del monaco
           onChange={(value) => setContenido(value)}
         />
@@ -48,7 +48,7 @@ function App() {
       <div id ="M2">
         <Editor
           theme='vs-dark'
-          defaultLanguage="javascript" //lenguaje de ayuda monaco
+          defaultLanguage="Plain Text" //lenguaje de ayuda monaco
           value = {resultado}  //el valor inicial del monaco
         />
       </div>

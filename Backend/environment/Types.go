@@ -8,4 +8,5 @@ const (
 	STRING                       //2
 	BOOLEAN                      //3
 	NULL                         //4
+	CHAR                         //5
 )

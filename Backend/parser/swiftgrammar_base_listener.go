@@ -44,6 +44,18 @@ func (s *BaseSwiftGrammarListener) EnterPrintstmt(ctx *PrintstmtContext) {}
 // ExitPrintstmt is called when production printstmt is exited.
 func (s *BaseSwiftGrammarListener) ExitPrintstmt(ctx *PrintstmtContext) {}
 
+// EnterVariablestmt is called when production variablestmt is entered.
+func (s *BaseSwiftGrammarListener) EnterVariablestmt(ctx *VariablestmtContext) {}
+
+// ExitVariablestmt is called when production variablestmt is exited.
+func (s *BaseSwiftGrammarListener) ExitVariablestmt(ctx *VariablestmtContext) {}
+
+// EnterTypestmt is called when production typestmt is entered.
+func (s *BaseSwiftGrammarListener) EnterTypestmt(ctx *TypestmtContext) {}
+
+// ExitTypestmt is called when production typestmt is exited.
+func (s *BaseSwiftGrammarListener) ExitTypestmt(ctx *TypestmtContext) {}
+
 // EnterIfstmt is called when production ifstmt is entered.
 func (s *BaseSwiftGrammarListener) EnterIfstmt(ctx *IfstmtContext) {}
 
@@ -55,3 +67,9 @@ func (s *BaseSwiftGrammarListener) EnterExpr(ctx *ExprContext) {}
 
 // ExitExpr is called when production expr is exited.
 func (s *BaseSwiftGrammarListener) ExitExpr(ctx *ExprContext) {}
+
+// EnterPrimitives is called when production primitives is entered.
+func (s *BaseSwiftGrammarListener) EnterPrimitives(ctx *PrimitivesContext) {}
+
+// ExitPrimitives is called when production primitives is exited.
+func (s *BaseSwiftGrammarListener) ExitPrimitives(ctx *PrimitivesContext) {}

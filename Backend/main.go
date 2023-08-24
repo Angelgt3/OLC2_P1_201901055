@@ -36,7 +36,7 @@ func ejecutar_peticion(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 	defer r.Body.Close()
-	fmt.Println(string(contenido))
+	//fmt.Println(string(contenido))
 	respuesta := ejecutar_analizador(string(contenido))
 
 	//Escribo el json para enviar
@@ -79,10 +79,11 @@ func ejecutar_analizador(code string) string {
 	//create ast
 	var Ast environment.AST
 	//ejecución
+	var globalenvioment environment.Environment = environment.NewEnvironment(nil, "GLOBAL")
 	for _, inst := range Code {
-		inst.(interfaces.Instruction).Ejecutar(&Ast, nil)
+		inst.(interfaces.Instruction).Ejecutar(&Ast, globalenvioment)
 	}
-	fmt.Println(Ast.GetPrint())
+	//fmt.Println(Ast.GetErrors())
 	return string(Ast.GetPrint())
 }
 

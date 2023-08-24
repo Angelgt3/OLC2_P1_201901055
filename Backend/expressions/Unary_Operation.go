@@ -3,6 +3,7 @@ package expressions
 import (
 	"Backend/environment"
 	"Backend/interfaces"
+	"fmt"
 )
 
 type UnaryOperation struct {
@@ -26,6 +27,7 @@ func (operacion UnaryOperation) Ejecutar(ast *environment.AST, env interface{}) 
 			if op1.Tipo == environment.BOOLEAN {
 				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: !op1.Valor.(bool)}
 			} else {
+				fmt.Println("ERROR: tipo no compatible para realizar el NOT")
 				ast.SetError("ERROR: tipo no compatible para realizar el NOT")
 			}
 		}

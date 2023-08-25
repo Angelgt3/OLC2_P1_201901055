@@ -37,6 +37,9 @@ type SwiftGrammarListener interface {
 	// EnterCases is called when entering the cases production.
 	EnterCases(c *CasesContext)
 
+	// EnterWhilestmt is called when entering the whilestmt production.
+	EnterWhilestmt(c *WhilestmtContext)
+
 	// EnterExpr is called when entering the expr production.
 	EnterExpr(c *ExprContext)
 
@@ -78,6 +81,9 @@ type SwiftGrammarListener interface {
 
 	// ExitCases is called when exiting the cases production.
 	ExitCases(c *CasesContext)
+
+	// ExitWhilestmt is called when exiting the whilestmt production.
+	ExitWhilestmt(c *WhilestmtContext)
 
 	// ExitExpr is called when exiting the expr production.
 	ExitExpr(c *ExprContext)

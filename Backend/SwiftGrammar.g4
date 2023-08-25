@@ -40,6 +40,7 @@ instruction returns [interfaces.Instruction inst]
 | variablestmt                                              { $inst = $variablestmt.vari}
 | ifstmt                                                    { $inst = $ifstmt.ifinst }
 | switchstmt                                                { $inst = $switchstmt.swinst }
+| whilestmt                                                 { $inst = $whilestmt.whileinst }
 ;
 
 printstmt returns [interfaces.Instruction prnt]
@@ -103,6 +104,10 @@ cases returns [[]interface{} casesinst]
     $casesinst = append($casesinst, instructions.NewCase($CASE.line, $CASE.pos, $expr.e, $block.blk))
     
 }
+;
+
+whilestmt returns [interfaces.Instruction whileinst]
+: WHILE expr LLAVEIZQ block LLAVEDER                        { $whileinst = instructions.NewWhile($WHILE.line, $WHILE.pos, $expr.e, $block.blk) }
 ;
 
 expr returns [interfaces.Expression e]

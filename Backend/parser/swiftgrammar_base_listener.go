@@ -80,6 +80,12 @@ func (s *BaseSwiftGrammarListener) EnterCases(ctx *CasesContext) {}
 // ExitCases is called when production cases is exited.
 func (s *BaseSwiftGrammarListener) ExitCases(ctx *CasesContext) {}
 
+// EnterWhilestmt is called when production whilestmt is entered.
+func (s *BaseSwiftGrammarListener) EnterWhilestmt(ctx *WhilestmtContext) {}
+
+// ExitWhilestmt is called when production whilestmt is exited.
+func (s *BaseSwiftGrammarListener) ExitWhilestmt(ctx *WhilestmtContext) {}
+
 // EnterExpr is called when production expr is entered.
 func (s *BaseSwiftGrammarListener) EnterExpr(ctx *ExprContext) {}
 

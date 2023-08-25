@@ -1,0 +1,693 @@
+2023-08-25 14:47:19:697 grammar LogManager.java:25 before: (LEXER_GRAMMAR SwiftLexer (RULES (RULE INT (BLOCK (ALT 'Int'))) (RULE FLOAT (BLOCK (ALT 'Float'))) (RULE TSTRING (BLOCK (ALT 'String'))) (RULE BOOL (BLOCK (ALT 'Bool'))) (RULE CHAR (BLOCK (ALT 'Character'))) (RULE VAR (BLOCK (ALT 'var'))) (RULE LET (BLOCK (ALT 'let'))) (RULE TRU (BLOCK (ALT 'true'))) (RULE FAL (BLOCK (ALT 'false'))) (RULE PRINT (BLOCK (ALT 'print'))) (RULE IF (BLOCK (ALT 'if'))) (RULE ELSE (BLOCK (ALT 'else'))) (RULE SWITCH (BLOCK (ALT 'switch'))) (RULE CASE (BLOCK (ALT 'case'))) (RULE DEFAULT (BLOCK (ALT 'default'))) (RULE BREAK (BLOCK (ALT 'break'))) (RULE CONTINUE (BLOCK (ALT 'continue'))) (RULE RETURN (BLOCK (ALT 'return'))) (RULE WHILE (BLOCK (ALT 'while'))) (RULE FOR (BLOCK (ALT 'for'))) (RULE IN (BLOCK (ALT 'in'))) (RULE GUARD (BLOCK (ALT 'guard'))) (RULE APPEND (BLOCK (ALT 'append'))) (RULE REMOVELAST (BLOCK (ALT 'removeLast'))) (RULE REMOVE (BLOCK (ALT 'remove'))) (RULE ISEMPTY (BLOCK (ALT 'IsEmpty'))) (RULE COUNT (BLOCK (ALT 'count'))) (RULE REPEATING (BLOCK (ALT 'repeating'))) (RULE STRUCT (BLOCK (ALT 'struct'))) (RULE SELF (BLOCK (ALT 'self'))) (RULE MUTATING (BLOCK (ALT 'mutating'))) (RULE FUNC (BLOCK (ALT 'func'))) (RULE NUMBER (BLOCK (ALT (+ (BLOCK (ALT [0-9]))) (? (BLOCK (ALT '.' (+ (BLOCK (ALT [0-9]))))))))) (RULE CHARACTER (BLOCK (ALT '"' (? (BLOCK (ALT (~ (SET [']))))) '"'))) (RULE STRING (BLOCK (ALT '"' (* (BLOCK (ALT (~ (SET ["]))))) '"'))) (RULE ID (BLOCK (ALT (BLOCK (ALT [a-zA-Z])) (* (BLOCK (ALT [a-zA-Z0-9_])))))) (RULE DIF (BLOCK (ALT '!='))) (RULE IG_IG (BLOCK (ALT '=='))) (RULE NOT (BLOCK (ALT '!'))) (RULE OR (BLOCK (ALT '||'))) (RULE AND (BLOCK (ALT '&&'))) (RULE IG (BLOCK (ALT '='))) (RULE MAY_IG (BLOCK (ALT '>='))) (RULE MEN_IG (BLOCK (ALT '<='))) (RULE MAYOR (BLOCK (ALT '>'))) (RULE MENOR (BLOCK (ALT '<'))) (RULE MOD (BLOCK (ALT '%'))) (RULE MUL (BLOCK (ALT '*'))) (RULE DIV (BLOCK (ALT '/'))) (RULE ADD (BLOCK (ALT '+'))) (RULE SUB (BLOCK (ALT '-'))) (RULE PARIZQ (BLOCK (ALT '('))) (RULE PARDER (BLOCK (ALT ')'))) (RULE LLAVEIZQ (BLOCK (ALT '{'))) (RULE LLAVEDER (BLOCK (ALT '}'))) (RULE CORIZQ (BLOCK (ALT '['))) (RULE CORDER (BLOCK (ALT ']'))) (RULE DOSP (BLOCK (ALT ':'))) (RULE COMA (BLOCK (ALT ','))) (RULE INTCE (BLOCK (ALT '?'))) (RULE FLECHA (BLOCK (ALT '->'))) (RULE AMP (BLOCK (ALT '&'))) (RULE WHITESPACE (BLOCK (LEXER_ALT_ACTION (ALT (+ (BLOCK (ALT [ \\\r\n\t])))) skip))) (RULE COMMENT (BLOCK (LEXER_ALT_ACTION (ALT '/*' (* (BLOCK (ALT .))) '*/') skip))) (RULE LINE_COMMENT (BLOCK (LEXER_ALT_ACTION (ALT '//' (* (BLOCK (ALT (~ (SET [\r\n])))))) skip)))))
+2023-08-25 14:47:19:721 grammar LogManager.java:25 after: (LEXER_GRAMMAR SwiftLexer (RULES (RULE INT (BLOCK (ALT 'Int'))) (RULE FLOAT (BLOCK (ALT 'Float'))) (RULE TSTRING (BLOCK (ALT 'String'))) (RULE BOOL (BLOCK (ALT 'Bool'))) (RULE CHAR (BLOCK (ALT 'Character'))) (RULE VAR (BLOCK (ALT 'var'))) (RULE LET (BLOCK (ALT 'let'))) (RULE TRU (BLOCK (ALT 'true'))) (RULE FAL (BLOCK (ALT 'false'))) (RULE PRINT (BLOCK (ALT 'print'))) (RULE IF (BLOCK (ALT 'if'))) (RULE ELSE (BLOCK (ALT 'else'))) (RULE SWITCH (BLOCK (ALT 'switch'))) (RULE CASE (BLOCK (ALT 'case'))) (RULE DEFAULT (BLOCK (ALT 'default'))) (RULE BREAK (BLOCK (ALT 'break'))) (RULE CONTINUE (BLOCK (ALT 'continue'))) (RULE RETURN (BLOCK (ALT 'return'))) (RULE WHILE (BLOCK (ALT 'while'))) (RULE FOR (BLOCK (ALT 'for'))) (RULE IN (BLOCK (ALT 'in'))) (RULE GUARD (BLOCK (ALT 'guard'))) (RULE APPEND (BLOCK (ALT 'append'))) (RULE REMOVELAST (BLOCK (ALT 'removeLast'))) (RULE REMOVE (BLOCK (ALT 'remove'))) (RULE ISEMPTY (BLOCK (ALT 'IsEmpty'))) (RULE COUNT (BLOCK (ALT 'count'))) (RULE REPEATING (BLOCK (ALT 'repeating'))) (RULE STRUCT (BLOCK (ALT 'struct'))) (RULE SELF (BLOCK (ALT 'self'))) (RULE MUTATING (BLOCK (ALT 'mutating'))) (RULE FUNC (BLOCK (ALT 'func'))) (RULE NUMBER (BLOCK (ALT (+ (BLOCK (ALT [0-9]))) (? (BLOCK (ALT '.' (+ (BLOCK (ALT [0-9]))))))))) (RULE CHARACTER (BLOCK (ALT '"' (? (BLOCK (ALT (~ (SET [']))))) '"'))) (RULE STRING (BLOCK (ALT '"' (* (BLOCK (ALT (~ (SET ["]))))) '"'))) (RULE ID (BLOCK (ALT (BLOCK (ALT [a-zA-Z])) (* (BLOCK (ALT [a-zA-Z0-9_])))))) (RULE DIF (BLOCK (ALT '!='))) (RULE IG_IG (BLOCK (ALT '=='))) (RULE NOT (BLOCK (ALT '!'))) (RULE OR (BLOCK (ALT '||'))) (RULE AND (BLOCK (ALT '&&'))) (RULE IG (BLOCK (ALT '='))) (RULE MAY_IG (BLOCK (ALT '>='))) (RULE MEN_IG (BLOCK (ALT '<='))) (RULE MAYOR (BLOCK (ALT '>'))) (RULE MENOR (BLOCK (ALT '<'))) (RULE MOD (BLOCK (ALT '%'))) (RULE MUL (BLOCK (ALT '*'))) (RULE DIV (BLOCK (ALT '/'))) (RULE ADD (BLOCK (ALT '+'))) (RULE SUB (BLOCK (ALT '-'))) (RULE PARIZQ (BLOCK (ALT '('))) (RULE PARDER (BLOCK (ALT ')'))) (RULE LLAVEIZQ (BLOCK (ALT '{'))) (RULE LLAVEDER (BLOCK (ALT '}'))) (RULE CORIZQ (BLOCK (ALT '['))) (RULE CORDER (BLOCK (ALT ']'))) (RULE DOSP (BLOCK (ALT ':'))) (RULE COMA (BLOCK (ALT ','))) (RULE INTCE (BLOCK (ALT '?'))) (RULE FLECHA (BLOCK (ALT '->'))) (RULE AMP (BLOCK (ALT '&'))) (RULE WHITESPACE (BLOCK (LEXER_ALT_ACTION (ALT (+ (BLOCK (ALT [ \\\r\n\t])))) skip))) (RULE COMMENT (BLOCK (LEXER_ALT_ACTION (ALT '/*' (* (BLOCK (ALT .))) '*/') skip))) (RULE LINE_COMMENT (BLOCK (LEXER_ALT_ACTION (ALT '//' (* (BLOCK (ALT (~ (SET [\r\n])))))) skip)))))
+2023-08-25 14:47:20:370 grammar LogManager.java:25 before: (COMBINED_GRAMMAR SwiftGrammar (OPTIONS (= tokenVocab SwiftLexer)) (@ header {
+    import "Backend/interfaces"
+    import "Backend/environment"
+    import "Backend/expressions"
+    import "Backend/instructions"
+    import "strings"
+}) (RULES (RULE s (returns []interface{} code) (BLOCK (ALT block EOF {   
+        $code = $block.blk
+    }))) (RULE block (returns []interface{} blk) (@ init {
+    $blk = []interface{}{}
+    var listInt []IInstructionContext
+  }) (BLOCK (ALT (+ (BLOCK (ALT (+= ins instruction)))) {
+        listInt = localctx.(*BlockContext).GetIns()
+        for _, e := range listInt {
+            $blk = append($blk, e.GetInst())
+        }
+    }))) (RULE instruction (returns interfaces.Instruction inst) (BLOCK (ALT printstmt { $inst = $printstmt.prnt}) (ALT variablestmt { $inst = $variablestmt.vari}) (ALT ifstmt { $inst = $ifstmt.ifinst }))) (RULE printstmt (returns interfaces.Instruction prnt) (BLOCK (ALT PRINT PARIZQ expr PARDER { $prnt = instructions.NewPrint($PRINT.line,$PRINT.pos,$expr.e)}))) (RULE variablestmt (returns interfaces.Instruction vari) (BLOCK (ALT VAR ID DOSP typestmt IG expr { $vari = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $typestmt.type, $expr.e, true) }) (ALT VAR ID IG expr { $vari = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, environment.NULL, $expr.e, true) }) (ALT VAR ID DOSP typestmt INTCE { $vari = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $typestmt.type, expressions.NewPrimitive($ID.line, $ID.pos, nil, environment.NULL), true) }) (ALT ID IG expr { $vari = instructions.NewAssigment($ID.line, $ID.pos, $ID.text, $expr.e) }) (ALT LET ID IG primitives { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, environment.NULL, $primitives.p, false) }) (ALT LET ID DOSP typestmt IG primitives { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, $typestmt.type, $primitives.p, false) }))) (RULE typestmt (returns environment.TipoExpresion type) (BLOCK (ALT INT { $type = environment.INTEGER }) (ALT FLOAT { $type = environment.FLOAT }) (ALT TSTRING { $type = environment.STRING }) (ALT BOOL { $type = environment.BOOLEAN }) (ALT CHAR { $type = environment.CHAR }))) (RULE ifstmt (returns interfaces.Instruction ifinst) (BLOCK (ALT IF expr LLAVEIZQ block LLAVEDER { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $block.blk, nil,nil) }) (ALT IF expr LLAVEIZQ (= bif block) LLAVEDER ELSE LLAVEIZQ (= belse block) LLAVEDER { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $bif.blk, $belse.blk,nil) }) (ALT IF expr LLAVEIZQ (= bif block) LLAVEDER elifs { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $block.blk, nil, $elifs.elifinst) }))) (RULE elifs (returns interfaces.Instruction elifinst) (BLOCK (ALT ELSE IF expr LLAVEIZQ block LLAVEDER elifs) (ALT ELSE IF expr LLAVEIZQ block LLAVEDER { $elifinst = instructions.NewElif($ELSE.line, $ELSE.pos, $expr.e, $block.blk) }))) (RULE expr (returns interfaces.Expression e) (BLOCK (ALT (= left expr) (= op (BLOCK (ALT MUL) (ALT DIV) (ALT MOD))) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (BLOCK (ALT ADD) (ALT SUB))) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (BLOCK (ALT MAY_IG) (ALT MAYOR))) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (BLOCK (ALT MEN_IG) (ALT MENOR))) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (BLOCK (ALT IG_IG) (ALT DIF))) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op AND) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op OR) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= op NOT) (= left expr) { $e = expressions.NewOperationUnary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text) }) (ALT (= op SUB) (= left expr) { $e = expressions.NewOperationUnary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text) }) (ALT PARIZQ expr PARDER { $e = $expr.e }) (ALT primitives { $e = $primitives.p}) (ALT (= list listArray) { $e = $list.p}) (ALT CORIZQ listParams CORDER { $e = expressions.NewArray($CORIZQ.line, $CORIZQ.pos, $listParams.l) }))) (RULE primitives (returns interfaces.Expression p) (BLOCK (ALT NUMBER {
+        if (strings.Contains($NUMBER.text,".")){
+            num,err := strconv.ParseFloat($NUMBER.text, 64);
+            if err!= nil{
+                fmt.Println(err)
+            }
+            $p = expressions.NewPrimitive($NUMBER.line,$NUMBER.pos,num,environment.FLOAT)
+        }else{
+            num,err := strconv.Atoi($NUMBER.text)
+            if err!= nil{
+                fmt.Println(err)
+            }
+            $p = expressions.NewPrimitive($NUMBER.line,$NUMBER.pos,num,environment.INTEGER)
+        }
+    }) (ALT CHARACTER {
+        str := $CHARACTER.text
+        $p = expressions.NewPrimitive($CHARACTER.line, $CHARACTER.pos, str[1:len(str)-1],environment.CHAR)
+    }) (ALT STRING {
+        str := $STRING.text
+        $p = expressions.NewPrimitive($STRING.line, $STRING.pos, str[1:len(str)-1],environment.STRING)
+    }) (ALT ID {
+        $p = expressions.NewCallVariable($ID.line, $ID.pos, $ID.text)
+    }) (ALT TRU { $p = expressions.NewPrimitive($TRU.line, $TRU.pos, true, environment.BOOLEAN) }) (ALT FAL { $p = expressions.NewPrimitive($FAL.line, $FAL.pos, false, environment.BOOLEAN) }))) (RULE listParams (returns []interface{} l) (BLOCK (ALT (= list listParams) COMA expr {
+    var arr []interface{}
+    arr = append($list.l, $expr.e)
+    $l = arr
+}) (ALT expr {
+    $l = []interface{}{}
+    $l = append($l, $expr.e)
+}))) (RULE listArray (returns interfaces.Expression p) (BLOCK (ALT (= list listArray) CORIZQ expr CORDER { $p = expressions.NewArrayAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $expr.e) }) (ALT ID { $p = expressions.NewCallVar($ID.line, $ID.pos, $ID.text)})))))
+2023-08-25 14:47:20:375 grammar LogManager.java:25 after: (COMBINED_GRAMMAR SwiftGrammar (OPTIONS (= tokenVocab SwiftLexer)) (@ header {
+    import "Backend/interfaces"
+    import "Backend/environment"
+    import "Backend/expressions"
+    import "Backend/instructions"
+    import "strings"
+}) (RULES (RULE s (returns []interface{} code) (BLOCK (ALT block EOF {   
+        $code = $block.blk
+    }))) (RULE block (returns []interface{} blk) (@ init {
+    $blk = []interface{}{}
+    var listInt []IInstructionContext
+  }) (BLOCK (ALT (+ (BLOCK (ALT (+= ins instruction)))) {
+        listInt = localctx.(*BlockContext).GetIns()
+        for _, e := range listInt {
+            $blk = append($blk, e.GetInst())
+        }
+    }))) (RULE instruction (returns interfaces.Instruction inst) (BLOCK (ALT printstmt { $inst = $printstmt.prnt}) (ALT variablestmt { $inst = $variablestmt.vari}) (ALT ifstmt { $inst = $ifstmt.ifinst }))) (RULE printstmt (returns interfaces.Instruction prnt) (BLOCK (ALT PRINT PARIZQ expr PARDER { $prnt = instructions.NewPrint($PRINT.line,$PRINT.pos,$expr.e)}))) (RULE variablestmt (returns interfaces.Instruction vari) (BLOCK (ALT VAR ID DOSP typestmt IG expr { $vari = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $typestmt.type, $expr.e, true) }) (ALT VAR ID IG expr { $vari = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, environment.NULL, $expr.e, true) }) (ALT VAR ID DOSP typestmt INTCE { $vari = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $typestmt.type, expressions.NewPrimitive($ID.line, $ID.pos, nil, environment.NULL), true) }) (ALT ID IG expr { $vari = instructions.NewAssigment($ID.line, $ID.pos, $ID.text, $expr.e) }) (ALT LET ID IG primitives { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, environment.NULL, $primitives.p, false) }) (ALT LET ID DOSP typestmt IG primitives { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, $typestmt.type, $primitives.p, false) }))) (RULE typestmt (returns environment.TipoExpresion type) (BLOCK (ALT INT { $type = environment.INTEGER }) (ALT FLOAT { $type = environment.FLOAT }) (ALT TSTRING { $type = environment.STRING }) (ALT BOOL { $type = environment.BOOLEAN }) (ALT CHAR { $type = environment.CHAR }))) (RULE ifstmt (returns interfaces.Instruction ifinst) (BLOCK (ALT IF expr LLAVEIZQ block LLAVEDER { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $block.blk, nil,nil) }) (ALT IF expr LLAVEIZQ (= bif block) LLAVEDER ELSE LLAVEIZQ (= belse block) LLAVEDER { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $bif.blk, $belse.blk,nil) }) (ALT IF expr LLAVEIZQ (= bif block) LLAVEDER elifs { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $block.blk, nil, $elifs.elifinst) }))) (RULE elifs (returns interfaces.Instruction elifinst) (BLOCK (ALT ELSE IF expr LLAVEIZQ block LLAVEDER elifs) (ALT ELSE IF expr LLAVEIZQ block LLAVEDER { $elifinst = instructions.NewElif($ELSE.line, $ELSE.pos, $expr.e, $block.blk) }))) (RULE expr (returns interfaces.Expression e) (BLOCK (ALT (= left expr) (= op (SET MUL DIV MOD)) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (SET ADD SUB)) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (SET MAY_IG MAYOR)) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (SET MEN_IG MENOR)) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (SET IG_IG DIF)) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op AND) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op OR) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= op NOT) (= left expr) { $e = expressions.NewOperationUnary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text) }) (ALT (= op SUB) (= left expr) { $e = expressions.NewOperationUnary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text) }) (ALT PARIZQ expr PARDER { $e = $expr.e }) (ALT primitives { $e = $primitives.p}) (ALT (= list listArray) { $e = $list.p}) (ALT CORIZQ listParams CORDER { $e = expressions.NewArray($CORIZQ.line, $CORIZQ.pos, $listParams.l) }))) (RULE primitives (returns interfaces.Expression p) (BLOCK (ALT NUMBER {
+        if (strings.Contains($NUMBER.text,".")){
+            num,err := strconv.ParseFloat($NUMBER.text, 64);
+            if err!= nil{
+                fmt.Println(err)
+            }
+            $p = expressions.NewPrimitive($NUMBER.line,$NUMBER.pos,num,environment.FLOAT)
+        }else{
+            num,err := strconv.Atoi($NUMBER.text)
+            if err!= nil{
+                fmt.Println(err)
+            }
+            $p = expressions.NewPrimitive($NUMBER.line,$NUMBER.pos,num,environment.INTEGER)
+        }
+    }) (ALT CHARACTER {
+        str := $CHARACTER.text
+        $p = expressions.NewPrimitive($CHARACTER.line, $CHARACTER.pos, str[1:len(str)-1],environment.CHAR)
+    }) (ALT STRING {
+        str := $STRING.text
+        $p = expressions.NewPrimitive($STRING.line, $STRING.pos, str[1:len(str)-1],environment.STRING)
+    }) (ALT ID {
+        $p = expressions.NewCallVariable($ID.line, $ID.pos, $ID.text)
+    }) (ALT TRU { $p = expressions.NewPrimitive($TRU.line, $TRU.pos, true, environment.BOOLEAN) }) (ALT FAL { $p = expressions.NewPrimitive($FAL.line, $FAL.pos, false, environment.BOOLEAN) }))) (RULE listParams (returns []interface{} l) (BLOCK (ALT (= list listParams) COMA expr {
+    var arr []interface{}
+    arr = append($list.l, $expr.e)
+    $l = arr
+}) (ALT expr {
+    $l = []interface{}{}
+    $l = append($l, $expr.e)
+}))) (RULE listArray (returns interfaces.Expression p) (BLOCK (ALT (= list listArray) CORIZQ expr CORDER { $p = expressions.NewArrayAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $expr.e) }) (ALT ID { $p = expressions.NewCallVar($ID.line, $ID.pos, $ID.text)})))))
+2023-08-25 14:47:20:380 grammar LogManager.java:25 after extract implicit lexer =(COMBINED_GRAMMAR SwiftGrammar (OPTIONS (= tokenVocab SwiftLexer)) (@ header {
+    import "Backend/interfaces"
+    import "Backend/environment"
+    import "Backend/expressions"
+    import "Backend/instructions"
+    import "strings"
+}) (RULES (RULE s (returns []interface{} code) (BLOCK (ALT block EOF {   
+        $code = $block.blk
+    }))) (RULE block (returns []interface{} blk) (@ init {
+    $blk = []interface{}{}
+    var listInt []IInstructionContext
+  }) (BLOCK (ALT (+ (BLOCK (ALT (+= ins instruction)))) {
+        listInt = localctx.(*BlockContext).GetIns()
+        for _, e := range listInt {
+            $blk = append($blk, e.GetInst())
+        }
+    }))) (RULE instruction (returns interfaces.Instruction inst) (BLOCK (ALT printstmt { $inst = $printstmt.prnt}) (ALT variablestmt { $inst = $variablestmt.vari}) (ALT ifstmt { $inst = $ifstmt.ifinst }))) (RULE printstmt (returns interfaces.Instruction prnt) (BLOCK (ALT PRINT PARIZQ expr PARDER { $prnt = instructions.NewPrint($PRINT.line,$PRINT.pos,$expr.e)}))) (RULE variablestmt (returns interfaces.Instruction vari) (BLOCK (ALT VAR ID DOSP typestmt IG expr { $vari = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $typestmt.type, $expr.e, true) }) (ALT VAR ID IG expr { $vari = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, environment.NULL, $expr.e, true) }) (ALT VAR ID DOSP typestmt INTCE { $vari = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $typestmt.type, expressions.NewPrimitive($ID.line, $ID.pos, nil, environment.NULL), true) }) (ALT ID IG expr { $vari = instructions.NewAssigment($ID.line, $ID.pos, $ID.text, $expr.e) }) (ALT LET ID IG primitives { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, environment.NULL, $primitives.p, false) }) (ALT LET ID DOSP typestmt IG primitives { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, $typestmt.type, $primitives.p, false) }))) (RULE typestmt (returns environment.TipoExpresion type) (BLOCK (ALT INT { $type = environment.INTEGER }) (ALT FLOAT { $type = environment.FLOAT }) (ALT TSTRING { $type = environment.STRING }) (ALT BOOL { $type = environment.BOOLEAN }) (ALT CHAR { $type = environment.CHAR }))) (RULE ifstmt (returns interfaces.Instruction ifinst) (BLOCK (ALT IF expr LLAVEIZQ block LLAVEDER { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $block.blk, nil,nil) }) (ALT IF expr LLAVEIZQ (= bif block) LLAVEDER ELSE LLAVEIZQ (= belse block) LLAVEDER { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $bif.blk, $belse.blk,nil) }) (ALT IF expr LLAVEIZQ (= bif block) LLAVEDER elifs { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $block.blk, nil, $elifs.elifinst) }))) (RULE elifs (returns interfaces.Instruction elifinst) (BLOCK (ALT ELSE IF expr LLAVEIZQ block LLAVEDER elifs) (ALT ELSE IF expr LLAVEIZQ block LLAVEDER { $elifinst = instructions.NewElif($ELSE.line, $ELSE.pos, $expr.e, $block.blk) }))) (RULE expr (returns interfaces.Expression e) (BLOCK (ALT (= left expr) (= op (SET MUL DIV MOD)) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (SET ADD SUB)) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (SET MAY_IG MAYOR)) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (SET MEN_IG MENOR)) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (SET IG_IG DIF)) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op AND) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op OR) (= right expr) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= op NOT) (= left expr) { $e = expressions.NewOperationUnary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text) }) (ALT (= op SUB) (= left expr) { $e = expressions.NewOperationUnary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text) }) (ALT PARIZQ expr PARDER { $e = $expr.e }) (ALT primitives { $e = $primitives.p}) (ALT (= list listArray) { $e = $list.p}) (ALT CORIZQ listParams CORDER { $e = expressions.NewArray($CORIZQ.line, $CORIZQ.pos, $listParams.l) }))) (RULE primitives (returns interfaces.Expression p) (BLOCK (ALT NUMBER {
+        if (strings.Contains($NUMBER.text,".")){
+            num,err := strconv.ParseFloat($NUMBER.text, 64);
+            if err!= nil{
+                fmt.Println(err)
+            }
+            $p = expressions.NewPrimitive($NUMBER.line,$NUMBER.pos,num,environment.FLOAT)
+        }else{
+            num,err := strconv.Atoi($NUMBER.text)
+            if err!= nil{
+                fmt.Println(err)
+            }
+            $p = expressions.NewPrimitive($NUMBER.line,$NUMBER.pos,num,environment.INTEGER)
+        }
+    }) (ALT CHARACTER {
+        str := $CHARACTER.text
+        $p = expressions.NewPrimitive($CHARACTER.line, $CHARACTER.pos, str[1:len(str)-1],environment.CHAR)
+    }) (ALT STRING {
+        str := $STRING.text
+        $p = expressions.NewPrimitive($STRING.line, $STRING.pos, str[1:len(str)-1],environment.STRING)
+    }) (ALT ID {
+        $p = expressions.NewCallVariable($ID.line, $ID.pos, $ID.text)
+    }) (ALT TRU { $p = expressions.NewPrimitive($TRU.line, $TRU.pos, true, environment.BOOLEAN) }) (ALT FAL { $p = expressions.NewPrimitive($FAL.line, $FAL.pos, false, environment.BOOLEAN) }))) (RULE listParams (returns []interface{} l) (BLOCK (ALT (= list listParams) COMA expr {
+    var arr []interface{}
+    arr = append($list.l, $expr.e)
+    $l = arr
+}) (ALT expr {
+    $l = []interface{}{}
+    $l = append($l, $expr.e)
+}))) (RULE listArray (returns interfaces.Expression p) (BLOCK (ALT (= list listArray) CORIZQ expr CORDER { $p = expressions.NewArrayAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $expr.e) }) (ALT ID { $p = expressions.NewCallVar($ID.line, $ID.pos, $ID.text)})))))
+2023-08-25 14:47:20:380 grammar LogManager.java:25 lexer =(LEXER_GRAMMAR SwiftGrammarLexer OPTIONS (@ header {
+    import "Backend/interfaces"
+    import "Backend/environment"
+    import "Backend/expressions"
+    import "Backend/instructions"
+    import "strings"
+}) RULES)
+2023-08-25 14:47:20:413 left-recursion LogManager.java:25 expr returns [interfaces.Expression e]
+    :   ( {} op=NOT<tokenIndex=482> left=expr<tokenIndex=486,p=6>                                          { $e = expressions.NewOperationUnary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text) } 
+        | op=SUB<tokenIndex=494> left=expr<tokenIndex=498,p=5>                                          { $e = expressions.NewOperationUnary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text) } 
+        | PARIZQ<tokenIndex=504> expr<tokenIndex=506> PARDER<tokenIndex=508>                                        { $e = $expr.e } 
+        | primitives<tokenIndex=514>                                                { $e = $primitives.p} 
+        | list=listArray<tokenIndex=522> { $e = $list.p} 
+        | CORIZQ<tokenIndex=528> listParams<tokenIndex=530> CORDER<tokenIndex=532> { $e = expressions.NewArray($CORIZQ.line, $CORIZQ.pos, $listParams.l) } 
+        )
+        (
+          {p.Precpred(p.GetParserRuleContext(), 13)}?<p=13> op=(MUL<tokenIndex=353>|DIV<tokenIndex=355>|MOD<tokenIndex=357>) right=expr<tokenIndex=362,p=14>                     { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
+                  | {p.Precpred(p.GetParserRuleContext(), 12)}?<p=12> op=(ADD<tokenIndex=375>|SUB<tokenIndex=377>) right=expr<tokenIndex=382,p=13>                         { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
+                  | {p.Precpred(p.GetParserRuleContext(), 11)}?<p=11> op=(MAY_IG<tokenIndex=395>|MAYOR<tokenIndex=397>) right=expr<tokenIndex=402,p=12>                    { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
+                  | {p.Precpred(p.GetParserRuleContext(), 10)}?<p=10> op=(MEN_IG<tokenIndex=415>|MENOR<tokenIndex=417>) right=expr<tokenIndex=422,p=11>                    { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
+                  | {p.Precpred(p.GetParserRuleContext(), 9)}?<p=9> op=(IG_IG<tokenIndex=435>|DIF<tokenIndex=437>) right=expr<tokenIndex=442,p=10>                       { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
+                  | {p.Precpred(p.GetParserRuleContext(), 8)}?<p=8> op=AND<tokenIndex=454> right=expr<tokenIndex=458,p=9>                               { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
+                  | {p.Precpred(p.GetParserRuleContext(), 7)}?<p=7> op=OR<tokenIndex=470> right=expr<tokenIndex=474,p=8>                                { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
+        )*
+    ;
+2023-08-25 14:47:20:440 grammar LogManager.java:25 added: (RULE expr (returns interfaces.Expression e) (BLOCK (ALT (BLOCK (ALT {} (= op (NOT (ELEMENT_OPTIONS (= tokenIndex 482)))) (= left (expr (ELEMENT_OPTIONS (= tokenIndex 486) (= p 6)))) { $e = expressions.NewOperationUnary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text) }) (ALT (= op (SUB (ELEMENT_OPTIONS (= tokenIndex 494)))) (= left (expr (ELEMENT_OPTIONS (= tokenIndex 498) (= p 5)))) { $e = expressions.NewOperationUnary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text) }) (ALT (PARIZQ (ELEMENT_OPTIONS (= tokenIndex 504))) (expr (ELEMENT_OPTIONS (= tokenIndex 506))) (PARDER (ELEMENT_OPTIONS (= tokenIndex 508))) { $e = $expr.e }) (ALT (primitives (ELEMENT_OPTIONS (= tokenIndex 514))) { $e = $primitives.p}) (ALT (= list (listArray (ELEMENT_OPTIONS (= tokenIndex 522)))) { $e = $list.p}) (ALT (CORIZQ (ELEMENT_OPTIONS (= tokenIndex 528))) (listParams (ELEMENT_OPTIONS (= tokenIndex 530))) (CORDER (ELEMENT_OPTIONS (= tokenIndex 532))) { $e = expressions.NewArray($CORIZQ.line, $CORIZQ.pos, $listParams.l) })) (* (BLOCK (ALT ({p.Precpred(p.GetParserRuleContext(), 13)}? (ELEMENT_OPTIONS (= p 13))) (= op (SET (MUL (ELEMENT_OPTIONS (= tokenIndex 353))) (DIV (ELEMENT_OPTIONS (= tokenIndex 355))) (MOD (ELEMENT_OPTIONS (= tokenIndex 357))))) (= right (expr (ELEMENT_OPTIONS (= tokenIndex 362) (= p 14)))) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT ({p.Precpred(p.GetParserRuleContext(), 12)}? (ELEMENT_OPTIONS (= p 12))) (= op (SET (ADD (ELEMENT_OPTIONS (= tokenIndex 375))) (SUB (ELEMENT_OPTIONS (= tokenIndex 377))))) (= right (expr (ELEMENT_OPTIONS (= tokenIndex 382) (= p 13)))) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT ({p.Precpred(p.GetParserRuleContext(), 11)}? (ELEMENT_OPTIONS (= p 11))) (= op (SET (MAY_IG (ELEMENT_OPTIONS (= tokenIndex 395))) (MAYOR (ELEMENT_OPTIONS (= tokenIndex 397))))) (= right (expr (ELEMENT_OPTIONS (= tokenIndex 402) (= p 12)))) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT ({p.Precpred(p.GetParserRuleContext(), 10)}? (ELEMENT_OPTIONS (= p 10))) (= op (SET (MEN_IG (ELEMENT_OPTIONS (= tokenIndex 415))) (MENOR (ELEMENT_OPTIONS (= tokenIndex 417))))) (= right (expr (ELEMENT_OPTIONS (= tokenIndex 422) (= p 11)))) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT ({p.Precpred(p.GetParserRuleContext(), 9)}? (ELEMENT_OPTIONS (= p 9))) (= op (SET (IG_IG (ELEMENT_OPTIONS (= tokenIndex 435))) (DIF (ELEMENT_OPTIONS (= tokenIndex 437))))) (= right (expr (ELEMENT_OPTIONS (= tokenIndex 442) (= p 10)))) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT ({p.Precpred(p.GetParserRuleContext(), 8)}? (ELEMENT_OPTIONS (= p 8))) (= op (AND (ELEMENT_OPTIONS (= tokenIndex 454)))) (= right (expr (ELEMENT_OPTIONS (= tokenIndex 458) (= p 9)))) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT ({p.Precpred(p.GetParserRuleContext(), 7)}? (ELEMENT_OPTIONS (= p 7))) (= op (OR (ELEMENT_OPTIONS (= tokenIndex 470)))) (= right (expr (ELEMENT_OPTIONS (= tokenIndex 474) (= p 8)))) { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }))))))
+2023-08-25 14:47:20:440 left-recursion LogManager.java:25 listParams returns [[]interface{} l]
+    :   ( {} expr<tokenIndex=601> 
+{
+    $l = []interface{}{}
+    $l = append($l, $expr.e)
+} 
+        )
+        (
+          {p.Precpred(p.GetParserRuleContext(), 2)}?<p=2> COMA<tokenIndex=593> expr<tokenIndex=595> 
+          {
+              var arr []interface{}
+              arr = append($list.l, $expr.e)
+              $l = arr
+          }
+        )*
+    ;
+2023-08-25 14:47:20:446 grammar LogManager.java:25 added: (RULE listParams (returns []interface{} l) (BLOCK (ALT (BLOCK (ALT {} (expr (ELEMENT_OPTIONS (= tokenIndex 601))) {
+    $l = []interface{}{}
+    $l = append($l, $expr.e)
+})) (* (BLOCK (ALT ({p.Precpred(p.GetParserRuleContext(), 2)}? (ELEMENT_OPTIONS (= p 2))) (COMA (ELEMENT_OPTIONS (= tokenIndex 593))) (expr (ELEMENT_OPTIONS (= tokenIndex 595))) {
+              var arr []interface{}
+              arr = append($list.l, $expr.e)
+              $l = arr
+          }))))))
+2023-08-25 14:47:20:446 left-recursion LogManager.java:25 listArray returns [interfaces.Expression p]
+    :   ( {} ID<tokenIndex=630> { $p = expressions.NewCallVar($ID.line, $ID.pos, $ID.text)} 
+        )
+        (
+          {p.Precpred(p.GetParserRuleContext(), 2)}?<p=2> CORIZQ<tokenIndex=620> expr<tokenIndex=622> CORDER<tokenIndex=624> { $p = expressions.NewArrayAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $expr.e) }
+        )*
+    ;
+2023-08-25 14:47:20:450 grammar LogManager.java:25 added: (RULE listArray (returns interfaces.Expression p) (BLOCK (ALT (BLOCK (ALT {} (ID (ELEMENT_OPTIONS (= tokenIndex 630))) { $p = expressions.NewCallVar($ID.line, $ID.pos, $ID.text)})) (* (BLOCK (ALT ({p.Precpred(p.GetParserRuleContext(), 2)}? (ELEMENT_OPTIONS (= p 2))) (CORIZQ (ELEMENT_OPTIONS (= tokenIndex 620))) (expr (ELEMENT_OPTIONS (= tokenIndex 622))) (CORDER (ELEMENT_OPTIONS (= tokenIndex 624))) { $p = expressions.NewArrayAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $expr.e) }))))))
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import INT=1
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import FLOAT=2
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import TSTRING=3
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import BOOL=4
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import CHAR=5
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import VAR=6
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import LET=7
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import TRU=8
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import FAL=9
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import PRINT=10
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import IF=11
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import ELSE=12
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import SWITCH=13
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import CASE=14
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import DEFAULT=15
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import BREAK=16
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import CONTINUE=17
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import RETURN=18
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import WHILE=19
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import FOR=20
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import IN=21
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import GUARD=22
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import APPEND=23
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import REMOVELAST=24
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import REMOVE=25
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import ISEMPTY=26
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import COUNT=27
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import REPEATING=28
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import STRUCT=29
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import SELF=30
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import MUTATING=31
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import FUNC=32
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import NUMBER=33
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import CHARACTER=34
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import STRING=35
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import ID=36
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import DIF=37
+2023-08-25 14:47:20:463 grammar LogManager.java:25 import IG_IG=38
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import NOT=39
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import OR=40
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import AND=41
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import IG=42
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import MAY_IG=43
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import MEN_IG=44
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import MAYOR=45
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import MENOR=46
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import MOD=47
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import MUL=48
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import DIV=49
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import ADD=50
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import SUB=51
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import PARIZQ=52
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import PARDER=53
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import LLAVEIZQ=54
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import LLAVEDER=55
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import CORIZQ=56
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import CORDER=57
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import DOSP=58
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import COMA=59
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import INTCE=60
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import FLECHA=61
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import AMP=62
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import WHITESPACE=63
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import COMMENT=64
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import LINE_COMMENT=65
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'Int'=1
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'Float'=2
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'String'=3
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'Bool'=4
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'Character'=5
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'var'=6
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'let'=7
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'true'=8
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'false'=9
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'print'=10
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'if'=11
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'else'=12
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'switch'=13
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'case'=14
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'default'=15
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'break'=16
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'continue'=17
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'return'=18
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'while'=19
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'for'=20
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'in'=21
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'guard'=22
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'append'=23
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'removeLast'=24
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'remove'=25
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'IsEmpty'=26
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'count'=27
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'repeating'=28
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'struct'=29
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'self'=30
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'mutating'=31
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import 'func'=32
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import '!='=37
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import '=='=38
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import '!'=39
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import '||'=40
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import '&&'=41
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import '='=42
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import '>='=43
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import '<='=44
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import '>'=45
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import '<'=46
+2023-08-25 14:47:20:470 grammar LogManager.java:25 import '%'=47
+2023-08-25 14:47:20:479 grammar LogManager.java:25 import '*'=48
+2023-08-25 14:47:20:479 grammar LogManager.java:25 import '/'=49
+2023-08-25 14:47:20:479 grammar LogManager.java:25 import '+'=50
+2023-08-25 14:47:20:479 grammar LogManager.java:25 import '-'=51
+2023-08-25 14:47:20:479 grammar LogManager.java:25 import '('=52
+2023-08-25 14:47:20:480 grammar LogManager.java:25 import ')'=53
+2023-08-25 14:47:20:480 grammar LogManager.java:25 import '{'=54
+2023-08-25 14:47:20:480 grammar LogManager.java:25 import '}'=55
+2023-08-25 14:47:20:480 grammar LogManager.java:25 import '['=56
+2023-08-25 14:47:20:480 grammar LogManager.java:25 import ']'=57
+2023-08-25 14:47:20:480 grammar LogManager.java:25 import ':'=58
+2023-08-25 14:47:20:480 grammar LogManager.java:25 import ','=59
+2023-08-25 14:47:20:480 grammar LogManager.java:25 import '?'=60
+2023-08-25 14:47:20:480 grammar LogManager.java:25 import '->'=61
+2023-08-25 14:47:20:480 grammar LogManager.java:25 import '&'=62
+2023-08-25 14:47:20:480 grammar LogManager.java:25 tokens={INT=1, FLOAT=2, TSTRING=3, BOOL=4, CHAR=5, VAR=6, LET=7, TRU=8, FAL=9, PRINT=10, IF=11, ELSE=12, SWITCH=13, CASE=14, DEFAULT=15, BREAK=16, CONTINUE=17, RETURN=18, WHILE=19, FOR=20, IN=21, GUARD=22, APPEND=23, REMOVELAST=24, REMOVE=25, ISEMPTY=26, COUNT=27, REPEATING=28, STRUCT=29, SELF=30, MUTATING=31, FUNC=32, NUMBER=33, CHARACTER=34, STRING=35, ID=36, DIF=37, IG_IG=38, NOT=39, OR=40, AND=41, IG=42, MAY_IG=43, MEN_IG=44, MAYOR=45, MENOR=46, MOD=47, MUL=48, DIV=49, ADD=50, SUB=51, PARIZQ=52, PARDER=53, LLAVEIZQ=54, LLAVEDER=55, CORIZQ=56, CORDER=57, DOSP=58, COMA=59, INTCE=60, FLECHA=61, AMP=62, WHITESPACE=63, COMMENT=64, LINE_COMMENT=65, 'Int'=1, 'Float'=2, 'String'=3, 'Bool'=4, 'Character'=5, 'var'=6, 'let'=7, 'true'=8, 'false'=9, 'print'=10, 'if'=11, 'else'=12, 'switch'=13, 'case'=14, 'default'=15, 'break'=16, 'continue'=17, 'return'=18, 'while'=19, 'for'=20, 'in'=21, 'guard'=22, 'append'=23, 'removeLast'=24, 'remove'=25, 'IsEmpty'=26, 'count'=27, 'repeating'=28, 'struct'=29, 'self'=30, 'mutating'=31, 'func'=32, '!='=37, '=='=38, '!'=39, '||'=40, '&&'=41, '='=42, '>='=43, '<='=44, '>'=45, '<'=46, '%'=47, '*'=48, '/'=49, '+'=50, '-'=51, '('=52, ')'=53, '{'=54, '}'=55, '['=56, ']'=57, ':'=58, ','=59, '?'=60, '->'=61, '&'=62}
+2023-08-25 14:47:20:480 semantics LogManager.java:25 tokens={EOF=-1, INT=1, FLOAT=2, TSTRING=3, BOOL=4, CHAR=5, VAR=6, LET=7, TRU=8, FAL=9, PRINT=10, IF=11, ELSE=12, SWITCH=13, CASE=14, DEFAULT=15, BREAK=16, CONTINUE=17, RETURN=18, WHILE=19, FOR=20, IN=21, GUARD=22, APPEND=23, REMOVELAST=24, REMOVE=25, ISEMPTY=26, COUNT=27, REPEATING=28, STRUCT=29, SELF=30, MUTATING=31, FUNC=32, NUMBER=33, CHARACTER=34, STRING=35, ID=36, DIF=37, IG_IG=38, NOT=39, OR=40, AND=41, IG=42, MAY_IG=43, MEN_IG=44, MAYOR=45, MENOR=46, MOD=47, MUL=48, DIV=49, ADD=50, SUB=51, PARIZQ=52, PARDER=53, LLAVEIZQ=54, LLAVEDER=55, CORIZQ=56, CORDER=57, DOSP=58, COMA=59, INTCE=60, FLECHA=61, AMP=62, WHITESPACE=63, COMMENT=64, LINE_COMMENT=65}
+2023-08-25 14:47:20:480 semantics LogManager.java:25 strings={'Int'=1, 'Float'=2, 'String'=3, 'Bool'=4, 'Character'=5, 'var'=6, 'let'=7, 'true'=8, 'false'=9, 'print'=10, 'if'=11, 'else'=12, 'switch'=13, 'case'=14, 'default'=15, 'break'=16, 'continue'=17, 'return'=18, 'while'=19, 'for'=20, 'in'=21, 'guard'=22, 'append'=23, 'removeLast'=24, 'remove'=25, 'IsEmpty'=26, 'count'=27, 'repeating'=28, 'struct'=29, 'self'=30, 'mutating'=31, 'func'=32, '!='=37, '=='=38, '!'=39, '||'=40, '&&'=41, '='=42, '>='=43, '<='=44, '>'=45, '<'=46, '%'=47, '*'=48, '/'=49, '+'=50, '-'=51, '('=52, ')'=53, '{'=54, '}'=55, '['=56, ']'=57, ':'=58, ','=59, '?'=60, '->'=61, '&'=62}
+2023-08-25 14:47:20:520 LL1 LogManager.java:25 
+DECISION 0 in rule block
+2023-08-25 14:47:20:520 LL1 LogManager.java:25 look=[{6..7, 10..11, 36}, {<EOF>, 55}]
+2023-08-25 14:47:20:520 LL1 LogManager.java:25 LL(1)? true
+2023-08-25 14:47:20:520 LL1 LogManager.java:25 
+DECISION 1 in rule instruction
+2023-08-25 14:47:20:520 LL1 LogManager.java:25 look=[10, {6..7, 36}, 11]
+2023-08-25 14:47:20:520 LL1 LogManager.java:25 LL(1)? true
+2023-08-25 14:47:20:520 LL1 LogManager.java:25 
+DECISION 2 in rule variablestmt
+2023-08-25 14:47:20:520 LL1 LogManager.java:25 look=[6, 6, 6, 36, 7, 7]
+2023-08-25 14:47:20:520 LL1 LogManager.java:25 LL(1)? false
+2023-08-25 14:47:20:520 LL1 LogManager.java:25 
+DECISION 3 in rule typestmt
+2023-08-25 14:47:20:520 LL1 LogManager.java:25 look=[1, 2, 3, 4, 5]
+2023-08-25 14:47:20:520 LL1 LogManager.java:25 LL(1)? true
+2023-08-25 14:47:20:520 LL1 LogManager.java:25 
+DECISION 4 in rule ifstmt
+2023-08-25 14:47:20:520 LL1 LogManager.java:25 look=[11, 11, 11]
+2023-08-25 14:47:20:520 LL1 LogManager.java:25 LL(1)? false
+2023-08-25 14:47:20:520 LL1 LogManager.java:25 
+DECISION 5 in rule elifs
+2023-08-25 14:47:20:529 LL1 LogManager.java:25 look=[12, 12]
+2023-08-25 14:47:20:529 LL1 LogManager.java:25 LL(1)? false
+2023-08-25 14:47:20:529 LL1 LogManager.java:25 
+DECISION 6 in rule expr
+2023-08-25 14:47:20:529 LL1 LogManager.java:25 look=[39, 51, 52, {8..9, 33..36}, 36, 56]
+2023-08-25 14:47:20:529 LL1 LogManager.java:25 LL(1)? false
+2023-08-25 14:47:20:529 LL1 LogManager.java:25 
+DECISION 7 in rule expr
+2023-08-25 14:47:20:529 LL1 LogManager.java:25 look=[null, null, null, null, null, null, null]
+2023-08-25 14:47:20:529 LL1 LogManager.java:25 LL(1)? false
+2023-08-25 14:47:20:529 LL1 LogManager.java:25 
+DECISION 8 in rule expr
+2023-08-25 14:47:20:530 LL1 LogManager.java:25 look=[null, null]
+2023-08-25 14:47:20:530 LL1 LogManager.java:25 LL(1)? false
+2023-08-25 14:47:20:530 LL1 LogManager.java:25 
+DECISION 9 in rule primitives
+2023-08-25 14:47:20:530 LL1 LogManager.java:25 look=[33, 34, 35, 36, 8, 9]
+2023-08-25 14:47:20:530 LL1 LogManager.java:25 LL(1)? true
+2023-08-25 14:47:20:530 LL1 LogManager.java:25 
+DECISION 10 in rule listParams
+2023-08-25 14:47:20:530 LL1 LogManager.java:25 look=[null, 57]
+2023-08-25 14:47:20:530 LL1 LogManager.java:25 LL(1)? false
+2023-08-25 14:47:20:530 LL1 LogManager.java:25 
+DECISION 11 in rule listArray
+2023-08-25 14:47:20:530 LL1 LogManager.java:25 look=[null, null]
+2023-08-25 14:47:20:530 LL1 LogManager.java:25 LL(1)? false
+2023-08-25 14:47:20:540 action-translator LogManager.java:25 translate 
+    import "Backend/interfaces"
+    import "Backend/environment"
+    import "Backend/expressions"
+    import "Backend/instructions"
+    import "strings"
+
+2023-08-25 14:47:20:571 action-translator LogManager.java:25 translate    
+        $code = $block.blk
+    
+2023-08-25 14:47:20:571 action-translator LogManager.java:25 attr [@-1,14:17='code',<0>,20:9]
+2023-08-25 14:47:20:571 action-translator LogManager.java:25 qattr [@-1,22:26='block',<0>,20:17].[@-1,28:30='blk',<0>,20:23]
+2023-08-25 14:47:20:571 action-translator LogManager.java:25 translate 
+    $blk = []interface{}{}
+    var listInt []IInstructionContext
+  
+2023-08-25 14:47:20:571 action-translator LogManager.java:25 attr [@-1,7:9='blk',<0>,26:5]
+2023-08-25 14:47:20:581 action-translator LogManager.java:25 translate 
+        listInt = localctx.(*BlockContext).GetIns()
+        for _, e := range listInt {
+            $blk = append($blk, e.GetInst())
+        }
+    
+2023-08-25 14:47:20:581 action-translator LogManager.java:25 attr [@-1,105:107='blk',<0>,33:13]
+2023-08-25 14:47:20:581 action-translator LogManager.java:25 attr [@-1,119:121='blk',<0>,33:27]
+2023-08-25 14:47:20:583 action-translator LogManager.java:25 translate  $inst = $printstmt.prnt
+2023-08-25 14:47:20:584 action-translator LogManager.java:25 attr [@-1,2:5='inst',<0>,39:62]
+2023-08-25 14:47:20:584 action-translator LogManager.java:25 qattr [@-1,10:18='printstmt',<0>,39:70].[@-1,20:23='prnt',<0>,39:80]
+2023-08-25 14:47:20:584 action-translator LogManager.java:25 translate  $inst = $variablestmt.vari
+2023-08-25 14:47:20:584 action-translator LogManager.java:25 attr [@-1,2:5='inst',<0>,40:62]
+2023-08-25 14:47:20:584 action-translator LogManager.java:25 qattr [@-1,10:21='variablestmt',<0>,40:70].[@-1,23:26='vari',<0>,40:83]
+2023-08-25 14:47:20:585 action-translator LogManager.java:25 translate  $inst = $ifstmt.ifinst 
+2023-08-25 14:47:20:585 action-translator LogManager.java:25 attr [@-1,2:5='inst',<0>,41:62]
+2023-08-25 14:47:20:585 action-translator LogManager.java:25 qattr [@-1,10:15='ifstmt',<0>,41:70].[@-1,17:22='ifinst',<0>,41:77]
+2023-08-25 14:47:20:587 action-translator LogManager.java:25 translate  $prnt = instructions.NewPrint($PRINT.line,$PRINT.pos,$expr.e)
+2023-08-25 14:47:20:588 action-translator LogManager.java:25 attr [@-1,2:5='prnt',<0>,45:62]
+2023-08-25 14:47:20:588 action-translator LogManager.java:25 qattr [@-1,32:36='PRINT',<0>,45:92].[@-1,38:41='line',<0>,45:98]
+2023-08-25 14:47:20:589 action-translator LogManager.java:25 qattr [@-1,44:48='PRINT',<0>,45:104].[@-1,50:52='pos',<0>,45:110]
+2023-08-25 14:47:20:590 action-translator LogManager.java:25 qattr [@-1,55:58='expr',<0>,45:115].[@-1,60:60='e',<0>,45:120]
+2023-08-25 14:47:20:590 action-translator LogManager.java:25 translate  $vari = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $typestmt.type, $expr.e, true) 
+2023-08-25 14:47:20:590 action-translator LogManager.java:25 attr [@-1,2:5='vari',<0>,49:62]
+2023-08-25 14:47:20:590 action-translator LogManager.java:25 qattr [@-1,38:40='VAR',<0>,49:98].[@-1,42:45='line',<0>,49:102]
+2023-08-25 14:47:20:590 action-translator LogManager.java:25 qattr [@-1,49:51='VAR',<0>,49:109].[@-1,53:55='pos',<0>,49:113]
+2023-08-25 14:47:20:590 action-translator LogManager.java:25 qattr [@-1,59:60='ID',<0>,49:119].[@-1,62:65='text',<0>,49:122]
+2023-08-25 14:47:20:590 action-translator LogManager.java:25 qattr [@-1,69:76='typestmt',<0>,49:129].[@-1,78:81='type',<0>,49:138]
+2023-08-25 14:47:20:590 action-translator LogManager.java:25 qattr [@-1,85:88='expr',<0>,49:145].[@-1,90:90='e',<0>,49:150]
+2023-08-25 14:47:20:590 action-translator LogManager.java:25 translate  $vari = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, environment.NULL, $expr.e, true) 
+2023-08-25 14:47:20:590 action-translator LogManager.java:25 attr [@-1,2:5='vari',<0>,50:62]
+2023-08-25 14:47:20:594 action-translator LogManager.java:25 qattr [@-1,38:40='VAR',<0>,50:98].[@-1,42:45='line',<0>,50:102]
+2023-08-25 14:47:20:594 action-translator LogManager.java:25 qattr [@-1,49:51='VAR',<0>,50:109].[@-1,53:55='pos',<0>,50:113]
+2023-08-25 14:47:20:594 action-translator LogManager.java:25 qattr [@-1,59:60='ID',<0>,50:119].[@-1,62:65='text',<0>,50:122]
+2023-08-25 14:47:20:596 action-translator LogManager.java:25 qattr [@-1,87:90='expr',<0>,50:147].[@-1,92:92='e',<0>,50:152]
+2023-08-25 14:47:20:596 action-translator LogManager.java:25 translate  $vari = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $typestmt.type, expressions.NewPrimitive($ID.line, $ID.pos, nil, environment.NULL), true) 
+2023-08-25 14:47:20:596 action-translator LogManager.java:25 attr [@-1,2:5='vari',<0>,51:62]
+2023-08-25 14:47:20:596 action-translator LogManager.java:25 qattr [@-1,38:40='VAR',<0>,51:98].[@-1,42:45='line',<0>,51:102]
+2023-08-25 14:47:20:596 action-translator LogManager.java:25 qattr [@-1,49:51='VAR',<0>,51:109].[@-1,53:55='pos',<0>,51:113]
+2023-08-25 14:47:20:596 action-translator LogManager.java:25 qattr [@-1,59:60='ID',<0>,51:119].[@-1,62:65='text',<0>,51:122]
+2023-08-25 14:47:20:596 action-translator LogManager.java:25 qattr [@-1,69:76='typestmt',<0>,51:129].[@-1,78:81='type',<0>,51:138]
+2023-08-25 14:47:20:596 action-translator LogManager.java:25 qattr [@-1,110:111='ID',<0>,51:170].[@-1,113:116='line',<0>,51:173]
+2023-08-25 14:47:20:596 action-translator LogManager.java:25 qattr [@-1,120:121='ID',<0>,51:180].[@-1,123:125='pos',<0>,51:183]
+2023-08-25 14:47:20:600 action-translator LogManager.java:25 translate  $vari = instructions.NewAssigment($ID.line, $ID.pos, $ID.text, $expr.e) 
+2023-08-25 14:47:20:600 action-translator LogManager.java:25 attr [@-1,2:5='vari',<0>,52:62]
+2023-08-25 14:47:20:600 action-translator LogManager.java:25 qattr [@-1,36:37='ID',<0>,52:96].[@-1,39:42='line',<0>,52:99]
+2023-08-25 14:47:20:600 action-translator LogManager.java:25 qattr [@-1,46:47='ID',<0>,52:106].[@-1,49:51='pos',<0>,52:109]
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 qattr [@-1,55:56='ID',<0>,52:115].[@-1,58:61='text',<0>,52:118]
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 qattr [@-1,65:68='expr',<0>,52:125].[@-1,70:70='e',<0>,52:130]
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 translate  $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, environment.NULL, $primitives.p, false) 
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 attr [@-1,2:5='vari',<0>,53:68]
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 qattr [@-1,38:40='LET',<0>,53:104].[@-1,42:45='line',<0>,53:108]
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 qattr [@-1,49:51='LET',<0>,53:115].[@-1,53:55='pos',<0>,53:119]
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 qattr [@-1,59:60='ID',<0>,53:125].[@-1,62:65='text',<0>,53:128]
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 qattr [@-1,87:96='primitives',<0>,53:153].[@-1,98:98='p',<0>,53:164]
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 translate  $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, $typestmt.type, $primitives.p, false) 
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 attr [@-1,2:5='vari',<0>,54:68]
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 qattr [@-1,38:40='LET',<0>,54:104].[@-1,42:45='line',<0>,54:108]
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 qattr [@-1,49:51='LET',<0>,54:115].[@-1,53:55='pos',<0>,54:119]
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 qattr [@-1,59:60='ID',<0>,54:125].[@-1,62:65='text',<0>,54:128]
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 qattr [@-1,69:76='typestmt',<0>,54:135].[@-1,78:81='type',<0>,54:144]
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 qattr [@-1,85:94='primitives',<0>,54:151].[@-1,96:96='p',<0>,54:162]
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 translate  $type = environment.INTEGER 
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 attr [@-1,2:5='type',<0>,58:14]
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 translate  $type = environment.FLOAT 
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 attr [@-1,2:5='type',<0>,59:14]
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 translate  $type = environment.STRING 
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 attr [@-1,2:5='type',<0>,60:14]
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 translate  $type = environment.BOOLEAN 
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 attr [@-1,2:5='type',<0>,61:14]
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 translate  $type = environment.CHAR 
+2023-08-25 14:47:20:602 action-translator LogManager.java:25 attr [@-1,2:5='type',<0>,62:14]
+2023-08-25 14:47:20:610 action-translator LogManager.java:25 translate  $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $block.blk, nil,nil) 
+2023-08-25 14:47:20:610 action-translator LogManager.java:25 attr [@-1,2:7='ifinst',<0>,66:82]
+2023-08-25 14:47:20:610 action-translator LogManager.java:25 qattr [@-1,31:32='IF',<0>,66:111].[@-1,34:37='line',<0>,66:114]
+2023-08-25 14:47:20:610 action-translator LogManager.java:25 qattr [@-1,41:42='IF',<0>,66:121].[@-1,44:46='pos',<0>,66:124]
+2023-08-25 14:47:20:610 action-translator LogManager.java:25 qattr [@-1,50:53='expr',<0>,66:130].[@-1,55:55='e',<0>,66:135]
+2023-08-25 14:47:20:610 action-translator LogManager.java:25 qattr [@-1,59:63='block',<0>,66:139].[@-1,65:67='blk',<0>,66:145]
+2023-08-25 14:47:20:610 action-translator LogManager.java:25 translate  $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $bif.blk, $belse.blk,nil) 
+2023-08-25 14:47:20:610 action-translator LogManager.java:25 attr [@-1,2:7='ifinst',<0>,67:82]
+2023-08-25 14:47:20:610 action-translator LogManager.java:25 qattr [@-1,31:32='IF',<0>,67:111].[@-1,34:37='line',<0>,67:114]
+2023-08-25 14:47:20:610 action-translator LogManager.java:25 qattr [@-1,41:42='IF',<0>,67:121].[@-1,44:46='pos',<0>,67:124]
+2023-08-25 14:47:20:610 action-translator LogManager.java:25 qattr [@-1,50:53='expr',<0>,67:130].[@-1,55:55='e',<0>,67:135]
+2023-08-25 14:47:20:610 action-translator LogManager.java:25 qattr [@-1,59:61='bif',<0>,67:139].[@-1,63:65='blk',<0>,67:143]
+2023-08-25 14:47:20:618 action-translator LogManager.java:25 qattr [@-1,69:73='belse',<0>,67:149].[@-1,75:77='blk',<0>,67:155]
+2023-08-25 14:47:20:618 action-translator LogManager.java:25 translate  $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $block.blk, nil, $elifs.elifinst) 
+2023-08-25 14:47:20:618 action-translator LogManager.java:25 attr [@-1,2:7='ifinst',<0>,68:82]
+2023-08-25 14:47:20:620 action-translator LogManager.java:25 qattr [@-1,31:32='IF',<0>,68:111].[@-1,34:37='line',<0>,68:114]
+2023-08-25 14:47:20:620 action-translator LogManager.java:25 qattr [@-1,41:42='IF',<0>,68:121].[@-1,44:46='pos',<0>,68:124]
+2023-08-25 14:47:20:620 action-translator LogManager.java:25 qattr [@-1,50:53='expr',<0>,68:130].[@-1,55:55='e',<0>,68:135]
+2023-08-25 14:47:20:620 action-translator LogManager.java:25 qattr [@-1,59:63='block',<0>,68:139].[@-1,65:67='blk',<0>,68:145]
+2023-08-25 14:47:20:620 action-translator LogManager.java:25 qattr [@-1,76:80='elifs',<0>,68:156].[@-1,82:89='elifinst',<0>,68:162]
+2023-08-25 14:47:20:620 action-translator LogManager.java:25 translate  $elifinst = instructions.NewElif($ELSE.line, $ELSE.pos, $expr.e, $block.blk) 
+2023-08-25 14:47:20:620 action-translator LogManager.java:25 attr [@-1,2:9='elifinst',<0>,74:83]
+2023-08-25 14:47:20:620 action-translator LogManager.java:25 qattr [@-1,35:38='ELSE',<0>,74:116].[@-1,40:43='line',<0>,74:121]
+2023-08-25 14:47:20:620 action-translator LogManager.java:25 qattr [@-1,47:50='ELSE',<0>,74:128].[@-1,52:54='pos',<0>,74:133]
+2023-08-25 14:47:20:620 action-translator LogManager.java:25 qattr [@-1,58:61='expr',<0>,74:139].[@-1,63:63='e',<0>,74:144]
+2023-08-25 14:47:20:620 action-translator LogManager.java:25 qattr [@-1,67:71='block',<0>,74:148].[@-1,73:75='blk',<0>,74:154]
+2023-08-25 14:47:20:626 action-translator LogManager.java:25 translate 
+2023-08-25 14:47:20:626 action-translator LogManager.java:25 translate  $e = expressions.NewOperationUnary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text) 
+2023-08-25 14:47:20:626 action-translator LogManager.java:25 attr [@-1,2:2='e',<0>,2:109]
+2023-08-25 14:47:20:630 action-translator LogManager.java:25 qattr [@-1,37:40='left',<0>,2:144].[@-1,42:46='start',<0>,2:149]
+2023-08-25 14:47:20:630 action-translator LogManager.java:25 qattr [@-1,60:63='left',<0>,2:167].[@-1,65:69='start',<0>,2:172]
+2023-08-25 14:47:20:630 action-translator LogManager.java:25 qattr [@-1,85:88='left',<0>,2:192].[@-1,90:90='e',<0>,2:197]
+2023-08-25 14:47:20:630 action-translator LogManager.java:25 qattr [@-1,94:95='op',<0>,2:201].[@-1,97:100='text',<0>,2:204]
+2023-08-25 14:47:20:630 action-translator LogManager.java:25 translate  $e = expressions.NewOperationUnary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text) 
+2023-08-25 14:47:20:630 action-translator LogManager.java:25 attr [@-1,2:2='e',<0>,3:106]
+2023-08-25 14:47:20:630 action-translator LogManager.java:25 qattr [@-1,37:40='left',<0>,3:141].[@-1,42:46='start',<0>,3:146]
+2023-08-25 14:47:20:630 action-translator LogManager.java:25 qattr [@-1,60:63='left',<0>,3:164].[@-1,65:69='start',<0>,3:169]
+2023-08-25 14:47:20:630 action-translator LogManager.java:25 qattr [@-1,85:88='left',<0>,3:189].[@-1,90:90='e',<0>,3:194]
+2023-08-25 14:47:20:630 action-translator LogManager.java:25 qattr [@-1,94:95='op',<0>,3:198].[@-1,97:100='text',<0>,3:201]
+2023-08-25 14:47:20:630 action-translator LogManager.java:25 translate  $e = $expr.e 
+2023-08-25 14:47:20:630 action-translator LogManager.java:25 attr [@-1,2:2='e',<0>,4:118]
+2023-08-25 14:47:20:630 action-translator LogManager.java:25 qattr [@-1,7:10='expr',<0>,4:123].[@-1,12:12='e',<0>,4:128]
+2023-08-25 14:47:20:630 action-translator LogManager.java:25 translate  $e = $primitives.p
+2023-08-25 14:47:20:630 action-translator LogManager.java:25 attr [@-1,2:2='e',<0>,5:86]
+2023-08-25 14:47:20:630 action-translator LogManager.java:25 qattr [@-1,7:16='primitives',<0>,5:91].[@-1,18:18='p',<0>,5:102]
+2023-08-25 14:47:20:630 action-translator LogManager.java:25 translate  $e = $list.p
+2023-08-25 14:47:20:630 action-translator LogManager.java:25 attr [@-1,2:2='e',<0>,6:43]
+2023-08-25 14:47:20:630 action-translator LogManager.java:25 qattr [@-1,7:10='list',<0>,6:48].[@-1,12:12='p',<0>,6:53]
+2023-08-25 14:47:20:630 action-translator LogManager.java:25 translate  $e = expressions.NewArray($CORIZQ.line, $CORIZQ.pos, $listParams.l) 
+2023-08-25 14:47:20:634 action-translator LogManager.java:25 attr [@-1,2:2='e',<0>,7:85]
+2023-08-25 14:47:20:634 action-translator LogManager.java:25 qattr [@-1,28:33='CORIZQ',<0>,7:111].[@-1,35:38='line',<0>,7:118]
+2023-08-25 14:47:20:634 action-translator LogManager.java:25 qattr [@-1,42:47='CORIZQ',<0>,7:125].[@-1,49:51='pos',<0>,7:132]
+2023-08-25 14:47:20:634 action-translator LogManager.java:25 qattr [@-1,55:64='listParams',<0>,7:138].[@-1,66:66='l',<0>,7:149]
+2023-08-25 14:47:20:634 action-translator LogManager.java:25 translate p.Precpred(p.GetParserRuleContext(), 13)
+2023-08-25 14:47:20:634 action-translator LogManager.java:25 translate  $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) 
+2023-08-25 14:47:20:640 action-translator LogManager.java:25 attr [@-1,2:2='e',<0>,10:179]
+2023-08-25 14:47:20:640 action-translator LogManager.java:25 qattr [@-1,38:41='left',<0>,10:215].[@-1,43:47='start',<0>,10:220]
+2023-08-25 14:47:20:640 action-translator LogManager.java:25 qattr [@-1,61:64='left',<0>,10:238].[@-1,66:70='start',<0>,10:243]
+2023-08-25 14:47:20:640 action-translator LogManager.java:25 qattr [@-1,86:89='left',<0>,10:263].[@-1,91:91='e',<0>,10:268]
+2023-08-25 14:47:20:642 action-translator LogManager.java:25 qattr [@-1,95:96='op',<0>,10:272].[@-1,98:101='text',<0>,10:275]
+2023-08-25 14:47:20:642 action-translator LogManager.java:25 qattr [@-1,105:109='right',<0>,10:282].[@-1,111:111='e',<0>,10:288]
+2023-08-25 14:47:20:642 action-translator LogManager.java:25 translate p.Precpred(p.GetParserRuleContext(), 12)
+2023-08-25 14:47:20:642 action-translator LogManager.java:25 translate  $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) 
+2023-08-25 14:47:20:642 action-translator LogManager.java:25 attr [@-1,2:2='e',<0>,11:173]
+2023-08-25 14:47:20:642 action-translator LogManager.java:25 qattr [@-1,38:41='left',<0>,11:209].[@-1,43:47='start',<0>,11:214]
+2023-08-25 14:47:20:642 action-translator LogManager.java:25 qattr [@-1,61:64='left',<0>,11:232].[@-1,66:70='start',<0>,11:237]
+2023-08-25 14:47:20:642 action-translator LogManager.java:25 qattr [@-1,86:89='left',<0>,11:257].[@-1,91:91='e',<0>,11:262]
+2023-08-25 14:47:20:642 action-translator LogManager.java:25 qattr [@-1,95:96='op',<0>,11:266].[@-1,98:101='text',<0>,11:269]
+2023-08-25 14:47:20:642 action-translator LogManager.java:25 qattr [@-1,105:109='right',<0>,11:276].[@-1,111:111='e',<0>,11:282]
+2023-08-25 14:47:20:642 action-translator LogManager.java:25 translate p.Precpred(p.GetParserRuleContext(), 11)
+2023-08-25 14:47:20:642 action-translator LogManager.java:25 translate  $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) 
+2023-08-25 14:47:20:642 action-translator LogManager.java:25 attr [@-1,2:2='e',<0>,12:173]
+2023-08-25 14:47:20:642 action-translator LogManager.java:25 qattr [@-1,38:41='left',<0>,12:209].[@-1,43:47='start',<0>,12:214]
+2023-08-25 14:47:20:650 action-translator LogManager.java:25 qattr [@-1,61:64='left',<0>,12:232].[@-1,66:70='start',<0>,12:237]
+2023-08-25 14:47:20:650 action-translator LogManager.java:25 qattr [@-1,86:89='left',<0>,12:257].[@-1,91:91='e',<0>,12:262]
+2023-08-25 14:47:20:650 action-translator LogManager.java:25 qattr [@-1,95:96='op',<0>,12:266].[@-1,98:101='text',<0>,12:269]
+2023-08-25 14:47:20:650 action-translator LogManager.java:25 qattr [@-1,105:109='right',<0>,12:276].[@-1,111:111='e',<0>,12:282]
+2023-08-25 14:47:20:650 action-translator LogManager.java:25 translate p.Precpred(p.GetParserRuleContext(), 10)
+2023-08-25 14:47:20:650 action-translator LogManager.java:25 translate  $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) 
+2023-08-25 14:47:20:650 action-translator LogManager.java:25 attr [@-1,2:2='e',<0>,13:173]
+2023-08-25 14:47:20:650 action-translator LogManager.java:25 qattr [@-1,38:41='left',<0>,13:209].[@-1,43:47='start',<0>,13:214]
+2023-08-25 14:47:20:650 action-translator LogManager.java:25 qattr [@-1,61:64='left',<0>,13:232].[@-1,66:70='start',<0>,13:237]
+2023-08-25 14:47:20:650 action-translator LogManager.java:25 qattr [@-1,86:89='left',<0>,13:257].[@-1,91:91='e',<0>,13:262]
+2023-08-25 14:47:20:650 action-translator LogManager.java:25 qattr [@-1,95:96='op',<0>,13:266].[@-1,98:101='text',<0>,13:269]
+2023-08-25 14:47:20:650 action-translator LogManager.java:25 qattr [@-1,105:109='right',<0>,13:276].[@-1,111:111='e',<0>,13:282]
+2023-08-25 14:47:20:650 action-translator LogManager.java:25 translate p.Precpred(p.GetParserRuleContext(), 9)
+2023-08-25 14:47:20:650 action-translator LogManager.java:25 translate  $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) 
+2023-08-25 14:47:20:650 action-translator LogManager.java:25 attr [@-1,2:2='e',<0>,14:171]
+2023-08-25 14:47:20:658 action-translator LogManager.java:25 qattr [@-1,38:41='left',<0>,14:207].[@-1,43:47='start',<0>,14:212]
+2023-08-25 14:47:20:658 action-translator LogManager.java:25 qattr [@-1,61:64='left',<0>,14:230].[@-1,66:70='start',<0>,14:235]
+2023-08-25 14:47:20:658 action-translator LogManager.java:25 qattr [@-1,86:89='left',<0>,14:255].[@-1,91:91='e',<0>,14:260]
+2023-08-25 14:47:20:658 action-translator LogManager.java:25 qattr [@-1,95:96='op',<0>,14:264].[@-1,98:101='text',<0>,14:267]
+2023-08-25 14:47:20:658 action-translator LogManager.java:25 qattr [@-1,105:109='right',<0>,14:274].[@-1,111:111='e',<0>,14:280]
+2023-08-25 14:47:20:660 action-translator LogManager.java:25 translate p.Precpred(p.GetParserRuleContext(), 8)
+2023-08-25 14:47:20:660 action-translator LogManager.java:25 translate  $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) 
+2023-08-25 14:47:20:660 action-translator LogManager.java:25 attr [@-1,2:2='e',<0>,15:154]
+2023-08-25 14:47:20:660 action-translator LogManager.java:25 qattr [@-1,38:41='left',<0>,15:190].[@-1,43:47='start',<0>,15:195]
+2023-08-25 14:47:20:660 action-translator LogManager.java:25 qattr [@-1,61:64='left',<0>,15:213].[@-1,66:70='start',<0>,15:218]
+2023-08-25 14:47:20:660 action-translator LogManager.java:25 qattr [@-1,86:89='left',<0>,15:238].[@-1,91:91='e',<0>,15:243]
+2023-08-25 14:47:20:660 action-translator LogManager.java:25 qattr [@-1,95:96='op',<0>,15:247].[@-1,98:101='text',<0>,15:250]
+2023-08-25 14:47:20:660 action-translator LogManager.java:25 qattr [@-1,105:109='right',<0>,15:257].[@-1,111:111='e',<0>,15:263]
+2023-08-25 14:47:20:660 action-translator LogManager.java:25 translate p.Precpred(p.GetParserRuleContext(), 7)
+2023-08-25 14:47:20:660 action-translator LogManager.java:25 translate  $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) 
+2023-08-25 14:47:20:660 action-translator LogManager.java:25 attr [@-1,2:2='e',<0>,16:154]
+2023-08-25 14:47:20:660 action-translator LogManager.java:25 qattr [@-1,38:41='left',<0>,16:190].[@-1,43:47='start',<0>,16:195]
+2023-08-25 14:47:20:660 action-translator LogManager.java:25 qattr [@-1,61:64='left',<0>,16:213].[@-1,66:70='start',<0>,16:218]
+2023-08-25 14:47:20:666 action-translator LogManager.java:25 qattr [@-1,86:89='left',<0>,16:238].[@-1,91:91='e',<0>,16:243]
+2023-08-25 14:47:20:666 action-translator LogManager.java:25 qattr [@-1,95:96='op',<0>,16:247].[@-1,98:101='text',<0>,16:250]
+2023-08-25 14:47:20:666 action-translator LogManager.java:25 qattr [@-1,105:109='right',<0>,16:257].[@-1,111:111='e',<0>,16:263]
+2023-08-25 14:47:20:670 action-translator LogManager.java:25 translate p.Precpred(p.GetParserRuleContext(), 13)
+2023-08-25 14:47:20:670 action-translator LogManager.java:25 translate p.Precpred(p.GetParserRuleContext(), 12)
+2023-08-25 14:47:20:670 action-translator LogManager.java:25 translate p.Precpred(p.GetParserRuleContext(), 11)
+2023-08-25 14:47:20:670 action-translator LogManager.java:25 translate p.Precpred(p.GetParserRuleContext(), 10)
+2023-08-25 14:47:20:670 action-translator LogManager.java:25 translate p.Precpred(p.GetParserRuleContext(), 9)
+2023-08-25 14:47:20:670 action-translator LogManager.java:25 translate p.Precpred(p.GetParserRuleContext(), 8)
+2023-08-25 14:47:20:670 action-translator LogManager.java:25 translate p.Precpred(p.GetParserRuleContext(), 7)
+2023-08-25 14:47:20:670 action-translator LogManager.java:25 translate 
+        if (strings.Contains($NUMBER.text,".")){
+            num,err := strconv.ParseFloat($NUMBER.text, 64);
+            if err!= nil{
+                fmt.Println(err)
+            }
+            $p = expressions.NewPrimitive($NUMBER.line,$NUMBER.pos,num,environment.FLOAT)
+        }else{
+            num,err := strconv.Atoi($NUMBER.text)
+            if err!= nil{
+                fmt.Println(err)
+            }
+            $p = expressions.NewPrimitive($NUMBER.line,$NUMBER.pos,num,environment.INTEGER)
+        }
+    
+2023-08-25 14:47:20:674 action-translator LogManager.java:25 qattr [@-1,32:37='NUMBER',<0>,97:30].[@-1,39:42='text',<0>,97:37]
+2023-08-25 14:47:20:674 action-translator LogManager.java:25 qattr [@-1,95:100='NUMBER',<0>,98:43].[@-1,102:105='text',<0>,98:50]
+2023-08-25 14:47:20:674 action-translator LogManager.java:25 attr [@-1,203:203='p',<0>,102:13]
+2023-08-25 14:47:20:674 action-translator LogManager.java:25 qattr [@-1,233:238='NUMBER',<0>,102:43].[@-1,240:243='line',<0>,102:50]
+2023-08-25 14:47:20:674 action-translator LogManager.java:25 qattr [@-1,246:251='NUMBER',<0>,102:56].[@-1,253:255='pos',<0>,102:63]
+2023-08-25 14:47:20:674 action-translator LogManager.java:25 qattr [@-1,334:339='NUMBER',<0>,104:37].[@-1,341:344='text',<0>,104:44]
+2023-08-25 14:47:20:674 action-translator LogManager.java:25 attr [@-1,437:437='p',<0>,108:13]
+2023-08-25 14:47:20:674 action-translator LogManager.java:25 qattr [@-1,467:472='NUMBER',<0>,108:43].[@-1,474:477='line',<0>,108:50]
+2023-08-25 14:47:20:674 action-translator LogManager.java:25 qattr [@-1,480:485='NUMBER',<0>,108:56].[@-1,487:489='pos',<0>,108:63]
+2023-08-25 14:47:20:674 action-translator LogManager.java:25 translate 
+        str := $CHARACTER.text
+        $p = expressions.NewPrimitive($CHARACTER.line, $CHARACTER.pos, str[1:len(str)-1],environment.CHAR)
+    
+2023-08-25 14:47:20:674 action-translator LogManager.java:25 qattr [@-1,18:26='CHARACTER',<0>,113:16].[@-1,28:31='text',<0>,113:26]
+2023-08-25 14:47:20:674 action-translator LogManager.java:25 attr [@-1,43:43='p',<0>,114:9]
+2023-08-25 14:47:20:674 action-translator LogManager.java:25 qattr [@-1,73:81='CHARACTER',<0>,114:39].[@-1,83:86='line',<0>,114:49]
+2023-08-25 14:47:20:674 action-translator LogManager.java:25 qattr [@-1,90:98='CHARACTER',<0>,114:56].[@-1,100:102='pos',<0>,114:66]
+2023-08-25 14:47:20:674 action-translator LogManager.java:25 translate 
+        str := $STRING.text
+        $p = expressions.NewPrimitive($STRING.line, $STRING.pos, str[1:len(str)-1],environment.STRING)
+    
+2023-08-25 14:47:20:680 action-translator LogManager.java:25 qattr [@-1,18:23='STRING',<0>,118:16].[@-1,25:28='text',<0>,118:23]
+2023-08-25 14:47:20:680 action-translator LogManager.java:25 attr [@-1,40:40='p',<0>,119:9]
+2023-08-25 14:47:20:680 action-translator LogManager.java:25 qattr [@-1,70:75='STRING',<0>,119:39].[@-1,77:80='line',<0>,119:46]
+2023-08-25 14:47:20:680 action-translator LogManager.java:25 qattr [@-1,84:89='STRING',<0>,119:53].[@-1,91:93='pos',<0>,119:60]
+2023-08-25 14:47:20:680 action-translator LogManager.java:25 translate 
+        $p = expressions.NewCallVariable($ID.line, $ID.pos, $ID.text)
+    
+2023-08-25 14:47:20:680 action-translator LogManager.java:25 attr [@-1,11:11='p',<0>,123:9]
+2023-08-25 14:47:20:683 action-translator LogManager.java:25 qattr [@-1,44:45='ID',<0>,123:42].[@-1,47:50='line',<0>,123:45]
+2023-08-25 14:47:20:683 action-translator LogManager.java:25 qattr [@-1,54:55='ID',<0>,123:52].[@-1,57:59='pos',<0>,123:55]
+2023-08-25 14:47:20:683 action-translator LogManager.java:25 qattr [@-1,63:64='ID',<0>,123:61].[@-1,66:69='text',<0>,123:64]
+2023-08-25 14:47:20:683 action-translator LogManager.java:25 translate  $p = expressions.NewPrimitive($TRU.line, $TRU.pos, true, environment.BOOLEAN) 
+2023-08-25 14:47:20:683 action-translator LogManager.java:25 attr [@-1,2:2='p',<0>,125:62]
+2023-08-25 14:47:20:683 action-translator LogManager.java:25 qattr [@-1,32:34='TRU',<0>,125:92].[@-1,36:39='line',<0>,125:96]
+2023-08-25 14:47:20:683 action-translator LogManager.java:25 qattr [@-1,43:45='TRU',<0>,125:103].[@-1,47:49='pos',<0>,125:107]
+2023-08-25 14:47:20:683 action-translator LogManager.java:25 translate  $p = expressions.NewPrimitive($FAL.line, $FAL.pos, false, environment.BOOLEAN) 
+2023-08-25 14:47:20:683 action-translator LogManager.java:25 attr [@-1,2:2='p',<0>,126:62]
+2023-08-25 14:47:20:683 action-translator LogManager.java:25 qattr [@-1,32:34='FAL',<0>,126:92].[@-1,36:39='line',<0>,126:96]
+2023-08-25 14:47:20:683 action-translator LogManager.java:25 qattr [@-1,43:45='FAL',<0>,126:103].[@-1,47:49='pos',<0>,126:107]
+2023-08-25 14:47:20:683 action-translator LogManager.java:25 translate 
+2023-08-25 14:47:20:688 action-translator LogManager.java:25 translate 
+    $l = []interface{}{}
+    $l = append($l, $expr.e)
+
+2023-08-25 14:47:20:689 action-translator LogManager.java:25 attr [@-1,7:7='l',<0>,4:5]
+2023-08-25 14:47:20:689 action-translator LogManager.java:25 attr [@-1,33:33='l',<0>,5:5]
+2023-08-25 14:47:20:689 action-translator LogManager.java:25 attr [@-1,45:45='l',<0>,5:17]
+2023-08-25 14:47:20:690 action-translator LogManager.java:25 qattr [@-1,49:52='expr',<0>,5:21].[@-1,54:54='e',<0>,5:26]
+2023-08-25 14:47:20:691 action-translator LogManager.java:25 translate p.Precpred(p.GetParserRuleContext(), 2)
+2023-08-25 14:47:20:691 action-translator LogManager.java:25 translate 
+              var arr []interface{}
+              arr = append($list.l, $expr.e)
+              $l = arr
+          
+2023-08-25 14:47:20:691 action-translator LogManager.java:25 qattr [@-1,67:70='list',<0>,12:28].[@-1,72:72='l',<0>,12:33]
+2023-08-25 14:47:20:691 action-translator LogManager.java:25 qattr [@-1,76:79='expr',<0>,12:37].[@-1,81:81='e',<0>,12:42]
+2023-08-25 14:47:20:691 action-translator LogManager.java:25 attr [@-1,100:100='l',<0>,13:15]
+2023-08-25 14:47:20:691 action-translator LogManager.java:25 translate p.Precpred(p.GetParserRuleContext(), 2)
+2023-08-25 14:47:20:692 action-translator LogManager.java:25 translate 
+2023-08-25 14:47:20:692 action-translator LogManager.java:25 translate  $p = expressions.NewCallVar($ID.line, $ID.pos, $ID.text)
+2023-08-25 14:47:20:693 action-translator LogManager.java:25 attr [@-1,2:2='p',<0>,2:34]
+2023-08-25 14:47:20:693 action-translator LogManager.java:25 qattr [@-1,30:31='ID',<0>,2:62].[@-1,33:36='line',<0>,2:65]
+2023-08-25 14:47:20:693 action-translator LogManager.java:25 qattr [@-1,40:41='ID',<0>,2:72].[@-1,43:45='pos',<0>,2:75]
+2023-08-25 14:47:20:694 action-translator LogManager.java:25 qattr [@-1,49:50='ID',<0>,2:81].[@-1,52:55='text',<0>,2:84]
+2023-08-25 14:47:20:694 action-translator LogManager.java:25 translate p.Precpred(p.GetParserRuleContext(), 2)
+2023-08-25 14:47:20:694 action-translator LogManager.java:25 translate  $p = expressions.NewArrayAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $expr.e) 
+2023-08-25 14:47:20:694 action-translator LogManager.java:25 attr [@-1,2:2='p',<0>,5:127]
+2023-08-25 14:47:20:694 action-translator LogManager.java:25 qattr [@-1,34:37='list',<0>,5:159].[@-1,39:43='start',<0>,5:164]
+2023-08-25 14:47:20:694 action-translator LogManager.java:25 qattr [@-1,57:60='list',<0>,5:182].[@-1,62:66='start',<0>,5:187]
+2023-08-25 14:47:20:694 action-translator LogManager.java:25 qattr [@-1,82:85='list',<0>,5:207].[@-1,87:87='p',<0>,5:212]
+2023-08-25 14:47:20:695 action-translator LogManager.java:25 qattr [@-1,91:94='expr',<0>,5:216].[@-1,96:96='e',<0>,5:221]
+2023-08-25 14:47:20:695 action-translator LogManager.java:25 translate p.Precpred(p.GetParserRuleContext(), 2)
+2023-08-25 14:47:20:982 action-translator LogManager.java:25 translate 
+    import "Backend/interfaces"
+    import "Backend/environment"
+    import "Backend/expressions"
+    import "Backend/instructions"
+    import "strings"
+
+2023-08-25 14:47:20:982 action-translator LogManager.java:25 translate 
+    import "Backend/interfaces"
+    import "Backend/environment"
+    import "Backend/expressions"
+    import "Backend/instructions"
+    import "strings"
+
+2023-08-25 14:47:21:080 action-translator LogManager.java:25 translate 
+    import "Backend/interfaces"
+    import "Backend/environment"
+    import "Backend/expressions"
+    import "Backend/instructions"
+    import "strings"
+
+2023-08-25 14:47:21:080 action-translator LogManager.java:25 translate 
+    import "Backend/interfaces"
+    import "Backend/environment"
+    import "Backend/expressions"
+    import "Backend/instructions"
+    import "strings"
+

@@ -4,6 +4,7 @@ import (
 	"Backend/environment"
 	"Backend/interfaces"
 	"fmt"
+	"strconv"
 )
 
 type UnaryOperation struct {
@@ -29,6 +30,18 @@ func (operacion UnaryOperation) Ejecutar(ast *environment.AST, env interface{}) 
 			} else {
 				fmt.Println("ERROR: tipo no compatible para realizar el NOT")
 				ast.SetError("ERROR: tipo no compatible para realizar el NOT")
+			}
+		}
+	case "-":
+		{
+			if op1.Tipo == environment.INTEGER {
+				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.INTEGER, Valor: (op1.Valor.(int) * -1)}
+			} else if op1.Tipo == environment.FLOAT {
+				val1, _ := strconv.ParseFloat(fmt.Sprintf("%v", op1.Valor), 64)
+				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.FLOAT, Valor: (val1 * -1)}
+			} else {
+				fmt.Println("ERROR: tipo no compatible para realizar la negacion")
+				ast.SetError("ERROR: tipo no compatible para realizar la negacion")
 			}
 		}
 	}

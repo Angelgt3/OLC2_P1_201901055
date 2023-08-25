@@ -38,7 +38,7 @@ block returns [[]interface{} blk]
 instruction returns [interfaces.Instruction inst]
 : printstmt                                                 { $inst = $printstmt.prnt}
 | variablestmt                                              { $inst = $variablestmt.vari}
-| ifstmt {}
+| ifstmt                                                    { $inst = $ifstmt.ifinst }
 ;
 
 printstmt returns [interfaces.Instruction prnt]
@@ -62,8 +62,26 @@ typestmt returns [environment.TipoExpresion type]
 | CHAR      { $type = environment.CHAR }
 ;
 
-ifstmt  
-: IF PARIZQ expr PARDER LLAVEIZQ block LLAVEDER
+ifstmt returns [interfaces.Instruction ifinst]
+: IF expr LLAVEIZQ block LLAVEDER                                                   { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $block.blk, nil,nil) }
+| IF expr LLAVEIZQ bif=block LLAVEDER ELSE LLAVEIZQ belse=block LLAVEDER            { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $bif.blk, $belse.blk,nil) }
+| IF expr LLAVEIZQ bif=block LLAVEDER elifs                                         { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $block.blk, nil, $elifs.elifinst) }
+| IF expr LLAVEIZQ bif=block LLAVEDER elifs ELSE LLAVEIZQ belse=block LLAVEDER      { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $block.blk, $belse.blk, $elifs.elifinst) }
+;
+
+elifs returns [[]interface{} elifinst]
+:celif=elifs ELSE IF expr LLAVEIZQ block LLAVEDER 
+{
+    var arrif []interface{}
+    arrif = append($celif.elifinst, instructions.NewElif($ELSE.line, $ELSE.pos, $expr.e, $block.blk))
+    $elifinst = arrif
+}   
+| ELSE IF expr LLAVEIZQ block LLAVEDER                                           
+{
+    $elifinst = []interface{}{}
+    $elifinst = append($elifinst, instructions.NewElif($ELSE.line, $ELSE.pos, $expr.e, $block.blk))
+    
+}
 ;
 
 expr returns [interfaces.Expression e]
@@ -75,8 +93,11 @@ expr returns [interfaces.Expression e]
 | left=expr op=AND right=expr                               { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
 | left=expr op=OR right=expr                                { $e = expressions.NewOperationBinary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
 | op=NOT left=expr                                          { $e = expressions.NewOperationUnary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text) }
+| op=SUB left=expr                                          { $e = expressions.NewOperationUnary($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text) }
 | PARIZQ expr PARDER                                        { $e = $expr.e }
 | primitives                                                { $e = $primitives.p}
+| list=listArray { $e = $list.p}
+| CORIZQ listParams CORDER { $e = expressions.NewArray($CORIZQ.line, $CORIZQ.pos, $listParams.l) }
 ;
 
 
@@ -113,4 +134,23 @@ primitives returns [interfaces.Expression p]
     }                        
 | TRU                                                       { $p = expressions.NewPrimitive($TRU.line, $TRU.pos, true, environment.BOOLEAN) }
 | FAL                                                       { $p = expressions.NewPrimitive($FAL.line, $FAL.pos, false, environment.BOOLEAN) }
+;
+
+listParams returns[[]interface{} l]
+: list=listParams COMA expr 
+{
+    var arr []interface{}
+    arr = append($list.l, $expr.e)
+    $l = arr
+}   
+| expr 
+{
+    $l = []interface{}{}
+    $l = append($l, $expr.e)
+}
+;
+
+listArray returns[interfaces.Expression p]
+: list = listArray CORIZQ expr CORDER { $p = expressions.NewArrayAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $expr.e) }
+| ID { $p = expressions.NewCallVariable($ID.line, $ID.pos, $ID.text)}
 ;

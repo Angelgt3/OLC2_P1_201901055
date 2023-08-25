@@ -62,6 +62,12 @@ func (s *BaseSwiftGrammarListener) EnterIfstmt(ctx *IfstmtContext) {}
 // ExitIfstmt is called when production ifstmt is exited.
 func (s *BaseSwiftGrammarListener) ExitIfstmt(ctx *IfstmtContext) {}
 
+// EnterElifs is called when production elifs is entered.
+func (s *BaseSwiftGrammarListener) EnterElifs(ctx *ElifsContext) {}
+
+// ExitElifs is called when production elifs is exited.
+func (s *BaseSwiftGrammarListener) ExitElifs(ctx *ElifsContext) {}
+
 // EnterExpr is called when production expr is entered.
 func (s *BaseSwiftGrammarListener) EnterExpr(ctx *ExprContext) {}
 
@@ -73,3 +79,15 @@ func (s *BaseSwiftGrammarListener) EnterPrimitives(ctx *PrimitivesContext) {}
 
 // ExitPrimitives is called when production primitives is exited.
 func (s *BaseSwiftGrammarListener) ExitPrimitives(ctx *PrimitivesContext) {}
+
+// EnterListParams is called when production listParams is entered.
+func (s *BaseSwiftGrammarListener) EnterListParams(ctx *ListParamsContext) {}
+
+// ExitListParams is called when production listParams is exited.
+func (s *BaseSwiftGrammarListener) ExitListParams(ctx *ListParamsContext) {}
+
+// EnterListArray is called when production listArray is entered.
+func (s *BaseSwiftGrammarListener) EnterListArray(ctx *ListArrayContext) {}
+
+// ExitListArray is called when production listArray is exited.
+func (s *BaseSwiftGrammarListener) ExitListArray(ctx *ListArrayContext) {}

@@ -31,6 +31,12 @@ type SwiftGrammarListener interface {
 	// EnterElifs is called when entering the elifs production.
 	EnterElifs(c *ElifsContext)
 
+	// EnterSwitchstmt is called when entering the switchstmt production.
+	EnterSwitchstmt(c *SwitchstmtContext)
+
+	// EnterCases is called when entering the cases production.
+	EnterCases(c *CasesContext)
+
 	// EnterExpr is called when entering the expr production.
 	EnterExpr(c *ExprContext)
 
@@ -66,6 +72,12 @@ type SwiftGrammarListener interface {
 
 	// ExitElifs is called when exiting the elifs production.
 	ExitElifs(c *ElifsContext)
+
+	// ExitSwitchstmt is called when exiting the switchstmt production.
+	ExitSwitchstmt(c *SwitchstmtContext)
+
+	// ExitCases is called when exiting the cases production.
+	ExitCases(c *CasesContext)
 
 	// ExitExpr is called when exiting the expr production.
 	ExitExpr(c *ExprContext)

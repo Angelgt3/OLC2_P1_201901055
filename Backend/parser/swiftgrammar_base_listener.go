@@ -68,6 +68,18 @@ func (s *BaseSwiftGrammarListener) EnterElifs(ctx *ElifsContext) {}
 // ExitElifs is called when production elifs is exited.
 func (s *BaseSwiftGrammarListener) ExitElifs(ctx *ElifsContext) {}
 
+// EnterSwitchstmt is called when production switchstmt is entered.
+func (s *BaseSwiftGrammarListener) EnterSwitchstmt(ctx *SwitchstmtContext) {}
+
+// ExitSwitchstmt is called when production switchstmt is exited.
+func (s *BaseSwiftGrammarListener) ExitSwitchstmt(ctx *SwitchstmtContext) {}
+
+// EnterCases is called when production cases is entered.
+func (s *BaseSwiftGrammarListener) EnterCases(ctx *CasesContext) {}
+
+// ExitCases is called when production cases is exited.
+func (s *BaseSwiftGrammarListener) ExitCases(ctx *CasesContext) {}
+
 // EnterExpr is called when production expr is entered.
 func (s *BaseSwiftGrammarListener) EnterExpr(ctx *ExprContext) {}
 

@@ -23,8 +23,8 @@ type Elif struct {
 }
 
 func NewElif(lin int, col int, condition interfaces.Expression, bloque_elif []interface{}) Elif {
-	ifInstr := Elif{lin, col, condition, bloque_elif}
-	return ifInstr
+	elifInstr := Elif{lin, col, condition, bloque_elif}
+	return elifInstr
 }
 
 func NewIf(lin int, col int, condition interfaces.Expression, bloque_if []interface{}, bloque_else []interface{}, ELIF []interface{}) If {

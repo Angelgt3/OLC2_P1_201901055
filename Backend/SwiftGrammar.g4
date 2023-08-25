@@ -39,6 +39,7 @@ instruction returns [interfaces.Instruction inst]
 : printstmt                                                 { $inst = $printstmt.prnt}
 | variablestmt                                              { $inst = $variablestmt.vari}
 | ifstmt                                                    { $inst = $ifstmt.ifinst }
+| switchstmt                                                { $inst = $switchstmt.swinst }
 ;
 
 printstmt returns [interfaces.Instruction prnt]
@@ -76,10 +77,30 @@ elifs returns [[]interface{} elifinst]
     arrif = append($celif.elifinst, instructions.NewElif($ELSE.line, $ELSE.pos, $expr.e, $block.blk))
     $elifinst = arrif
 }   
-| ELSE IF expr LLAVEIZQ block LLAVEDER                                           
+| ELSE IF expr LLAVEIZQ block LLAVEDER
 {
     $elifinst = []interface{}{}
     $elifinst = append($elifinst, instructions.NewElif($ELSE.line, $ELSE.pos, $expr.e, $block.blk))
+    
+}
+;
+
+switchstmt returns [interfaces.Instruction swinst]
+: SWITCH expr LLAVEIZQ cases DEFAULT DOSP block LLAVEDER        { $swinst = instructions.NewSwitch($SWITCH.line, $SWITCH.pos, $expr.e, $cases.casesinst, $block.blk) }
+| SWITCH expr LLAVEIZQ cases LLAVEDER                           { $swinst = instructions.NewSwitch($SWITCH.line, $SWITCH.pos, $expr.e, $cases.casesinst, nil) }
+;
+
+cases returns [[]interface{} casesinst]
+:ccases=cases CASE expr DOSP block
+{
+    var arrcase []interface{}
+    arrcase = append($ccases.casesinst, instructions.NewCase($CASE.line, $CASE.pos, $expr.e, $block.blk))
+    $casesinst = arrcase
+}   
+|CASE expr DOSP block
+{
+    $casesinst = []interface{}{}
+    $casesinst = append($casesinst, instructions.NewCase($CASE.line, $CASE.pos, $expr.e, $block.blk))
     
 }
 ;

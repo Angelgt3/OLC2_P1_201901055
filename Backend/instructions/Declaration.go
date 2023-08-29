@@ -40,7 +40,8 @@ func (p Declaration) Ejecutar(ast *environment.AST, env interface{}) interface{}
 
 	//validar tipos
 	if result.Tipo == environment.ARRAY {
-		if p.ArrayValidation(result) {
+		if p.ArrayValidation(ast, env, result) {
+			result.Tipo = p.Tipo
 			env.(environment.Environment).SaveVariable(p.Id, p.changeable, result)
 		} else {
 			fmt.Println("La estructura del array es incorrecta")
@@ -57,6 +58,21 @@ func (p Declaration) Ejecutar(ast *environment.AST, env interface{}) interface{}
 	return nil
 }
 
-func (p Declaration) ArrayValidation(result environment.Symbol) bool {
+func (p Declaration) ArrayValidation(ast *environment.AST, env interface{}, result environment.Symbol) bool {
+	//validaciones de array
+	//fmt.Println("p:", p)
+	//fmt.Println("result:", result)
+	//si es un vector nulo
+
+	if result.Valor == nil {
+		return true
+	}
+	for cont := range result.Valor.([]interface{}) {
+		temp_result := result.Valor.([]interface{})[cont].(environment.Symbol)
+		//verifico que todos los valores del vector sean de mismno tipo
+		if temp_result.Tipo != p.Tipo-7 { // es de diferente
+			return false
+		}
+	}
 	return true
 }

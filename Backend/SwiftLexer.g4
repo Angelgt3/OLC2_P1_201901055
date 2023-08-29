@@ -37,7 +37,7 @@ STRUCT:                 'struct';
 SELF:                   'self';
 MUTATING:               'mutating';
 FUNC:                   'func';
-
+AT:                     'at';
 
 // primitives
 NUMBER : [0-9]+ ('.'[0-9]+)?;
@@ -68,6 +68,7 @@ LLAVEDER:           '}';
 CORIZQ:             '[';
 CORDER:             ']';
 DOSP:               ':';
+PUNTO:              '.';
 COMA:               ',';
 INTCE:              '?';
 FLECHA:             '->';

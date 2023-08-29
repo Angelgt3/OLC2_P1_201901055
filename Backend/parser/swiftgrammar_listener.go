@@ -25,6 +25,12 @@ type SwiftGrammarListener interface {
 	// EnterTypestmt is called when entering the typestmt production.
 	EnterTypestmt(c *TypestmtContext)
 
+	// EnterType2stmt is called when entering the type2stmt production.
+	EnterType2stmt(c *Type2stmtContext)
+
+	// EnterFunvecstmt is called when entering the funvecstmt production.
+	EnterFunvecstmt(c *FunvecstmtContext)
+
 	// EnterIfstmt is called when entering the ifstmt production.
 	EnterIfstmt(c *IfstmtContext)
 
@@ -69,6 +75,12 @@ type SwiftGrammarListener interface {
 
 	// ExitTypestmt is called when exiting the typestmt production.
 	ExitTypestmt(c *TypestmtContext)
+
+	// ExitType2stmt is called when exiting the type2stmt production.
+	ExitType2stmt(c *Type2stmtContext)
+
+	// ExitFunvecstmt is called when exiting the funvecstmt production.
+	ExitFunvecstmt(c *FunvecstmtContext)
 
 	// ExitIfstmt is called when exiting the ifstmt production.
 	ExitIfstmt(c *IfstmtContext)

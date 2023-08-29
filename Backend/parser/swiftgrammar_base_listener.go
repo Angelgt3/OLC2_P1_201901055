@@ -56,6 +56,18 @@ func (s *BaseSwiftGrammarListener) EnterTypestmt(ctx *TypestmtContext) {}
 // ExitTypestmt is called when production typestmt is exited.
 func (s *BaseSwiftGrammarListener) ExitTypestmt(ctx *TypestmtContext) {}
 
+// EnterType2stmt is called when production type2stmt is entered.
+func (s *BaseSwiftGrammarListener) EnterType2stmt(ctx *Type2stmtContext) {}
+
+// ExitType2stmt is called when production type2stmt is exited.
+func (s *BaseSwiftGrammarListener) ExitType2stmt(ctx *Type2stmtContext) {}
+
+// EnterFunvecstmt is called when production funvecstmt is entered.
+func (s *BaseSwiftGrammarListener) EnterFunvecstmt(ctx *FunvecstmtContext) {}
+
+// ExitFunvecstmt is called when production funvecstmt is exited.
+func (s *BaseSwiftGrammarListener) ExitFunvecstmt(ctx *FunvecstmtContext) {}
+
 // EnterIfstmt is called when production ifstmt is entered.
 func (s *BaseSwiftGrammarListener) EnterIfstmt(ctx *IfstmtContext) {}
 

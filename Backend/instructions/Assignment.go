@@ -93,3 +93,80 @@ func (p AssigmentVec) Ejecutar(ast *environment.AST, env interface{}) interface{
 
 	return nil
 }
+
+type AssigmentMatriz struct {
+	Lin        int
+	Col        int
+	Id         string
+	Expresion  interfaces.Expression
+	Expresion2 interfaces.Expression
+}
+
+func NewAssigmentMa(lin int, col int, id string, val interfaces.Expression, val2 interfaces.Expression) AssigmentMatriz {
+	instr := AssigmentMatriz{lin, col, id, val, val2}
+	return instr
+}
+
+func (p AssigmentMatriz) Ejecutar(ast *environment.AST, env interface{}) interface{} {
+	//Traer simbolo
+	//posicion
+	var result environment.Symbol
+	result = p.Expresion.Ejecutar(ast, env)
+
+	var posicion []int
+	for cont := range result.Valor.([]interface{}) {
+		temp_result := result.Valor.([]interface{})[cont].(environment.Symbol)
+		posicion = append(posicion, temp_result.Valor.(int))
+	}
+	fmt.Println("posicion: ", posicion)
+	//new valor
+	var result2 environment.Symbol
+	result2 = p.Expresion2.Ejecutar(ast, env)
+	fmt.Println("result2", result2)
+
+	if result.Tipo == environment.NULL {
+		return nil
+	}
+
+	//Obtengo la variable
+	var variable = environment.Symbol{}
+	variable = env.(environment.Environment).GetVariable(p.Id)
+	fmt.Println("variable", variable.Valor)
+	if variable.Tipo < environment.ARRAY || variable.Tipo > environment.A_CHAR {
+		fmt.Println("La variable no es un matriz para realizar esta asignacion")
+		return nil
+	}
+
+	var newvariable_valor = variable.Valor.([]interface{})[posicion[0]].(environment.Symbol)
+	var se_encontro = true
+	for cont := 1; cont < len(posicion); cont++ { // Comienza desde 1
+		// Verifica si newvariable_valor es de tipo []interface{}
+		if valorSlice, ok := newvariable_valor.Valor.([]interface{}); ok {
+			if cont < len(valorSlice) {
+				newvariable_valor = valorSlice[posicion[cont]].(environment.Symbol)
+			} else {
+				fmt.Println("ERRRO: posicion inexistente")
+				se_encontro = false
+				break
+			}
+		} else {
+			fmt.Println("ERRRO inesperado")
+			se_encontro = false
+			break
+		}
+	}
+
+	fmt.Println("temp_result:", newvariable_valor)
+
+	if !se_encontro {
+		fmt.Println("Posicion que se busca es inexistente")
+		return nil
+	}
+	variable.Valor = newvariable_valor
+	fmt.Println(variable.Valor)
+
+	//escribo la nueva variable
+	env.(environment.Environment).SetVariable(p.Id, variable)
+
+	return nil
+}

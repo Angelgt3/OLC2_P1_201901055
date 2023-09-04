@@ -29,7 +29,7 @@ func (operacion UnaryOperation) Ejecutar(ast *environment.AST, env interface{}) 
 				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: !op1.Valor.(bool)}
 			} else {
 				fmt.Println("ERROR: tipo no compatible para realizar el NOT")
-				ast.SetError("ERROR: tipo no compatible para realizar el NOT")
+				ast.SetError("ERROR: tipo no compatible para realizar el NOT", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 			}
 		}
 	case "-":
@@ -41,7 +41,7 @@ func (operacion UnaryOperation) Ejecutar(ast *environment.AST, env interface{}) 
 				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.FLOAT, Valor: (val1 * -1)}
 			} else {
 				fmt.Println("ERROR: tipo no compatible para realizar la negacion")
-				ast.SetError("ERROR: tipo no compatible para realizar la negacion")
+				ast.SetError("ERROR: tipo no compatible para realizar la negacion", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 			}
 		}
 	}

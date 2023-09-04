@@ -4,6 +4,7 @@ import (
 	"Backend/environment"
 	"Backend/interfaces"
 	"Backend/parser"
+	"Backend/reports"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -83,7 +84,9 @@ func ejecutar_analizador(code string) string {
 	for _, inst := range Code {
 		inst.(interfaces.Instruction).Ejecutar(&Ast, globalenvioment)
 	}
-	//fmt.Println(Ast.GetErrors())
+
+	reports.Rts(Ast)
+	reports.RErrors(Ast)
 	return string(Ast.GetPrint())
 }
 

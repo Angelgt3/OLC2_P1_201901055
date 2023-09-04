@@ -8,7 +8,7 @@ type Environment struct {
 	Anterior         interface{}
 	Tabla_variable   map[string]Symbol
 	mutable_variable map[string]bool
-	Tabla_funciones  map[string]Symbol
+	Tabla_funciones  map[string]InstF
 	Id               string
 }
 
@@ -17,9 +17,13 @@ func NewEnvironment(ant interface{}, id string) Environment {
 		Anterior:         ant,
 		Tabla_variable:   make(map[string]Symbol),
 		mutable_variable: make(map[string]bool),
-		Tabla_funciones:  make(map[string]Symbol),
+		Tabla_funciones:  make(map[string]InstF),
 		Id:               id,
 	}
+}
+
+func (env Environment) GetEntorno() string {
+	return env.Id
 }
 
 func (env Environment) SaveVariable(id string, mut bool, value Symbol) {
@@ -73,4 +77,31 @@ func (env Environment) SetVariable(id string, value Symbol) Symbol {
 	}
 	fmt.Println("La variable ", id, " no existe")
 	return Symbol{Lin: 0, Col: 0, Tipo: NULL, Valor: 0}
+}
+
+func (env Environment) SaveFunc(id string, value InstF) {
+
+	if variable, ok := env.Tabla_variable[id]; ok {
+		fmt.Println("La variable "+id+" ya existe", variable)
+		return
+	}
+	env.Tabla_funciones[id] = value
+
+}
+
+func (env Environment) GetFunc(id string) InstF {
+	var tmpEnv Environment
+	tmpEnv = env
+	for {
+		if funcion, ok := tmpEnv.Tabla_funciones[id]; ok {
+			return funcion
+		}
+		if tmpEnv.Anterior == nil {
+			break
+		} else {
+			tmpEnv = tmpEnv.Anterior.(Environment)
+		}
+	}
+	fmt.Println("La funcion", id, " no existe")
+	return InstF{0, 0, NULL, nil}
 }

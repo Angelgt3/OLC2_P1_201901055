@@ -73,6 +73,7 @@ COMA:               ',';
 INTCE:              '?';
 FLECHA:             '->';
 AMP:                '&';
+PCOMA:              ';';
 
 // skip
 WHITESPACE:         [ \\\r\n\t]+ -> skip;

@@ -3,6 +3,7 @@ package instructions
 import (
 	"Backend/environment"
 	"Backend/interfaces"
+	"fmt"
 )
 
 type Switch struct {
@@ -40,7 +41,7 @@ func (p Switch) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 		for _, ins := range p.Cases {
 			if caseInstance, ok := ins.(Cases); ok {
 				result_case := caseInstance.Ejecutar(ast, env, condicion)
-				if result_case == true { //si ya realizo un bloque else if se sale
+				if result_case == true { //si ya realizo un bloque case se sale
 					return nil
 				}
 			}
@@ -67,7 +68,14 @@ func (p Cases) Ejecutar(ast *environment.AST, env interface{}, condicion environ
 		caseEnv = environment.NewEnvironment(env.(environment.Environment), "CASE")
 		//ejecución
 		for _, inst := range p.Bloque {
-			inst.(interfaces.Instruction).Ejecutar(ast, caseEnv)
+			trasferencia := inst.(interfaces.Instruction).Ejecutar(ast, caseEnv)
+			if trasferencia != nil {
+				if valor, ok := trasferencia.(string); ok && valor == "break" {
+					return true //se sale del case
+				} else if valor, ok := trasferencia.(string); ok && valor == "continue" {
+					fmt.Println("Error continue sin motivo")
+				}
+			}
 		}
 		return true
 	}

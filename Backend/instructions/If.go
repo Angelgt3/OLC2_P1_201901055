@@ -38,7 +38,7 @@ func (p If) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 	//Validando tipo
 	if condicion.Tipo != environment.BOOLEAN {
 		fmt.Println("El tipo de variable es incorrecto para un If")
-		ast.SetError("El tipo de variable es incorrecto para un If")
+		ast.SetError("El tipo de variable es incorrecto para un If", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		return nil
 	}
 	//Ejecutando if
@@ -47,7 +47,14 @@ func (p If) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 		ifEnv = environment.NewEnvironment(env.(environment.Environment), "IF")
 		//ejecución
 		for _, inst := range p.Bloque_if {
-			inst.(interfaces.Instruction).Ejecutar(ast, ifEnv)
+			trasferencia := inst.(interfaces.Instruction).Ejecutar(ast, ifEnv)
+			if trasferencia != nil {
+				if valor, ok := trasferencia.(string); ok && valor == "break" {
+					return "break"
+				} else if valor, ok := trasferencia.(string); ok && valor == "continue" {
+					return "continue"
+				}
+			}
 		}
 		return nil
 	} else {
@@ -57,8 +64,15 @@ func (p If) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 			for _, ins := range p.Elif {
 				if elifInstance, ok := ins.(Elif); ok {
 					result_elif := elifInstance.Ejecutar(ast, env)
-					if result_elif == true { //si ya realizo un bloque else if se sale
-						return nil
+					if result_elif != nil {
+						if valor, ok := result_elif.(string); ok && valor == "break" {
+							return "break"
+						} else if valor, ok := result_elif.(string); ok && valor == "continue" {
+							return "continue"
+						}
+						if result_elif == true { //si ya realizo un bloque else if se sale
+							return nil
+						}
 					}
 				}
 			}
@@ -71,7 +85,14 @@ func (p If) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 		elseEnv = environment.NewEnvironment(env.(environment.Environment), "ELSE")
 		//ejecución
 		for _, inst := range p.Bloque_else {
-			inst.(interfaces.Instruction).Ejecutar(ast, elseEnv)
+			trasferencia := inst.(interfaces.Instruction).Ejecutar(ast, elseEnv)
+			if trasferencia != nil {
+				if valor, ok := trasferencia.(string); ok && valor == "break" {
+					return "break"
+				} else if valor, ok := trasferencia.(string); ok && valor == "continue" {
+					return "continue"
+				}
+			}
 		}
 		return nil
 	}
@@ -84,7 +105,7 @@ func (p Elif) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 	//Validando tipo
 	if condicion.Tipo != environment.BOOLEAN {
 		fmt.Println("El tipo de variable es incorrecto para un else if")
-		ast.SetError("El tipo de variable es incorrecto para un else if")
+		ast.SetError("El tipo de variable es incorrecto para un else if", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		return nil
 	}
 	//Ejecutando else if
@@ -93,7 +114,14 @@ func (p Elif) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 		elifEnv = environment.NewEnvironment(env.(environment.Environment), "ELIF")
 		//ejecución
 		for _, inst := range p.Bloque_elif {
-			inst.(interfaces.Instruction).Ejecutar(ast, elifEnv)
+			trasferencia := inst.(interfaces.Instruction).Ejecutar(ast, elifEnv)
+			if trasferencia != nil {
+				if valor, ok := trasferencia.(string); ok && valor == "break" {
+					return "break"
+				} else if valor, ok := trasferencia.(string); ok && valor == "continue" {
+					return "continue"
+				}
+			}
 		}
 		return true
 	}

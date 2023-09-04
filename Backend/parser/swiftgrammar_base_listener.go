@@ -38,6 +38,18 @@ func (s *BaseSwiftGrammarListener) EnterInstruction(ctx *InstructionContext) {}
 // ExitInstruction is called when production instruction is exited.
 func (s *BaseSwiftGrammarListener) ExitInstruction(ctx *InstructionContext) {}
 
+// EnterFuncstmt is called when production funcstmt is entered.
+func (s *BaseSwiftGrammarListener) EnterFuncstmt(ctx *FuncstmtContext) {}
+
+// ExitFuncstmt is called when production funcstmt is exited.
+func (s *BaseSwiftGrammarListener) ExitFuncstmt(ctx *FuncstmtContext) {}
+
+// EnterFuncallstmt is called when production funcallstmt is entered.
+func (s *BaseSwiftGrammarListener) EnterFuncallstmt(ctx *FuncallstmtContext) {}
+
+// ExitFuncallstmt is called when production funcallstmt is exited.
+func (s *BaseSwiftGrammarListener) ExitFuncallstmt(ctx *FuncallstmtContext) {}
+
 // EnterPrintstmt is called when production printstmt is entered.
 func (s *BaseSwiftGrammarListener) EnterPrintstmt(ctx *PrintstmtContext) {}
 
@@ -121,3 +133,9 @@ func (s *BaseSwiftGrammarListener) EnterListArray(ctx *ListArrayContext) {}
 
 // ExitListArray is called when production listArray is exited.
 func (s *BaseSwiftGrammarListener) ExitListArray(ctx *ListArrayContext) {}
+
+// EnterListAceso is called when production listAceso is entered.
+func (s *BaseSwiftGrammarListener) EnterListAceso(ctx *ListAcesoContext) {}
+
+// ExitListAceso is called when production listAceso is exited.
+func (s *BaseSwiftGrammarListener) ExitListAceso(ctx *ListAcesoContext) {}

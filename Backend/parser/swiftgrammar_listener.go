@@ -16,6 +16,12 @@ type SwiftGrammarListener interface {
 	// EnterInstruction is called when entering the instruction production.
 	EnterInstruction(c *InstructionContext)
 
+	// EnterFuncstmt is called when entering the funcstmt production.
+	EnterFuncstmt(c *FuncstmtContext)
+
+	// EnterFuncallstmt is called when entering the funcallstmt production.
+	EnterFuncallstmt(c *FuncallstmtContext)
+
 	// EnterPrintstmt is called when entering the printstmt production.
 	EnterPrintstmt(c *PrintstmtContext)
 
@@ -58,6 +64,9 @@ type SwiftGrammarListener interface {
 	// EnterListArray is called when entering the listArray production.
 	EnterListArray(c *ListArrayContext)
 
+	// EnterListAceso is called when entering the listAceso production.
+	EnterListAceso(c *ListAcesoContext)
+
 	// ExitS is called when exiting the s production.
 	ExitS(c *SContext)
 
@@ -66,6 +75,12 @@ type SwiftGrammarListener interface {
 
 	// ExitInstruction is called when exiting the instruction production.
 	ExitInstruction(c *InstructionContext)
+
+	// ExitFuncstmt is called when exiting the funcstmt production.
+	ExitFuncstmt(c *FuncstmtContext)
+
+	// ExitFuncallstmt is called when exiting the funcallstmt production.
+	ExitFuncallstmt(c *FuncallstmtContext)
 
 	// ExitPrintstmt is called when exiting the printstmt production.
 	ExitPrintstmt(c *PrintstmtContext)
@@ -108,4 +123,7 @@ type SwiftGrammarListener interface {
 
 	// ExitListArray is called when exiting the listArray production.
 	ExitListArray(c *ListArrayContext)
+
+	// ExitListAceso is called when exiting the listAceso production.
+	ExitListAceso(c *ListAcesoContext)
 }

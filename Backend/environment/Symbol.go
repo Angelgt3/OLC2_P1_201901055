@@ -10,8 +10,10 @@ type Symbol struct {
 
 // funciones
 type InstF struct {
-	Lin    int
-	Col    int
-	Tipo   TipoExpresion
-	Bloque []interface{}
+	Lin        int
+	Col        int
+	Id         string
+	Tipo       TipoExpresion
+	Parametros []interface{}
+	Bloque     []interface{}
 }

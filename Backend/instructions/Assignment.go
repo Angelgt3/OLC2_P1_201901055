@@ -24,7 +24,6 @@ func (p Assigment) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 	result = p.Expresion.Ejecutar(ast, env)
 	//modificar la variable si se puede
 	env.(environment.Environment).SetVariable(p.Id, result)
-
 	return nil
 }
 
@@ -118,7 +117,6 @@ func (p AssigmentMatriz) Ejecutar(ast *environment.AST, env interface{}) interfa
 		temp_result := result.Valor.([]interface{})[cont].(environment.Symbol)
 		posicion = append(posicion, temp_result.Valor.(int))
 	}
-	fmt.Println("posicion: ", posicion)
 	//new valor
 	var result2 environment.Symbol
 	result2 = p.Expresion2.Ejecutar(ast, env)
@@ -131,24 +129,41 @@ func (p AssigmentMatriz) Ejecutar(ast *environment.AST, env interface{}) interfa
 	//Obtengo la variable
 	var variable = environment.Symbol{}
 	variable = env.(environment.Environment).GetVariable(p.Id)
-	fmt.Println("variable", variable.Valor)
 	if variable.Tipo < environment.ARRAY || variable.Tipo > environment.A_CHAR {
 		fmt.Println("La variable no es un matriz para realizar esta asignacion")
 		return nil
 	}
 
-	var newvariable_valor = variable.Valor.([]interface{})[posicion[0]].(environment.Symbol)
+	var newvariable_valor []interface{}
+	var cont2 = 0
 	var se_encontro = true
-	for cont := 1; cont < len(posicion); cont++ { // Comienza desde 1
+	for cont := range variable.Valor.([]interface{}) { // Comienza desde 1
+		fmt.Println(cont)
 		// Verifica si newvariable_valor es de tipo []interface{}
-		if valorSlice, ok := newvariable_valor.Valor.([]interface{}); ok {
-			if cont < len(valorSlice) {
-				newvariable_valor = valorSlice[posicion[cont]].(environment.Symbol)
-			} else {
-				fmt.Println("ERRRO: posicion inexistente")
-				se_encontro = false
-				break
+		var tempvariable_valor = variable.Valor.([]interface{})[cont].(environment.Symbol)
+
+		if valorSlice, ok := tempvariable_valor.Valor.([]interface{}); ok {
+
+			if posicion[0] < cont || posicion[0] > cont { //no hay modificaciones aqui
+				newvariable_valor = append(newvariable_valor, tempvariable_valor)
+			} else if posicion[0] == cont {
+				cont2++
+				var temp_array []interface{}
+				for cont3 := range valorSlice {
+					var tempvariable_valor = valorSlice[cont3].(environment.Symbol)
+					if posicion[cont2] < cont3 || posicion[cont2] > cont3 { //no hay modificaciones aqui
+						temp_array = append(newvariable_valor, tempvariable_valor)
+
+					} else if posicion[cont2] == cont3 {
+						//newvariable_valor = append(newvariable_valor, tempvariable_valor)
+						temp_array = append(newvariable_valor, tempvariable_valor)
+
+					}
+				}
+				newvariable_valor = append(newvariable_valor, temp_array[cont2])
+
 			}
+
 		} else {
 			fmt.Println("ERRRO inesperado")
 			se_encontro = false
@@ -163,7 +178,7 @@ func (p AssigmentMatriz) Ejecutar(ast *environment.AST, env interface{}) interfa
 		return nil
 	}
 	variable.Valor = newvariable_valor
-	fmt.Println(variable.Valor)
+	//fmt.Println(variable.Valor)
 
 	//escribo la nueva variable
 	env.(environment.Environment).SetVariable(p.Id, variable)

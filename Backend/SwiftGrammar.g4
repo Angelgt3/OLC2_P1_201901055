@@ -57,34 +57,74 @@ instruction returns [interfaces.Instruction inst]
 | ifstmt                                                            { $inst = $ifstmt.ifinst }
 | switchstmt                                                        { $inst = $switchstmt.swinst }
 | whilestmt                                                         { $inst = $whilestmt.whileinst }
+| forstmt                                                           { $inst = $forstmt.forinst }
 | funvecstmt                                                        { $inst = $funvecstmt.fvecisnt }
 | BREAK PCOMA?                                                      { $inst = instructions.NewBreak($BREAK.line, $BREAK.pos) }
 | CONTINUE PCOMA?                                                   { $inst = instructions.NewContinue($CONTINUE.line, $CONTINUE.pos) }
-| RETURN expr PCOMA?                                                { $inst = instructions.NewContinue($RETURN.line, $RETURN.pos, $expr.e) }
+| RETURN expr PCOMA?                                                { $inst = instructions.NewReturn($RETURN.line, $RETURN.pos, $expr.e) }
 //globales
 | funcstmt                                                          { $inst = $funcstmt.fun }
 | funcallstmt                                                       { $inst = $funcallstmt.cfun }
+| structCreation                                                    { $inst = $structCreation.dec }
 ;
-/*
-instruction2 returns [interfaces.Instruction inst2]
-: funcstmt                                                          { $inst2 = $funcstmt.fun }
+
+
+structCreation returns[interfaces.Instruction dec]
+: STRUCT ID LLAVEIZQ listStructDec LLAVEDER { $dec = instructions.NewStruct($STRUCT.line, $STRUCT.pos, $ID.text, $listStructDec.l) }
 ;
-*/
+
+listStructDec returns[[]interface{} l]
+: list=listStructDec COMA VAR ID DOSP typestmt {
+        var arr []interface{}
+        newParams := environment.NewStructType($ID.text, $typestmt.type)
+        arr = append($list.l, newParams)
+        $l = arr
+    }
+| VAR ID DOSP typestmt {
+        var arr []interface{}
+        newParams := environment.NewStructType($ID.text, $typestmt.type)
+        arr = append(arr, newParams)
+        $l = arr
+    }
+|  { $l = []interface{}{} }
+;
+
 
 // FUNCIONES- DECLARACION
 funcstmt returns [interfaces.Instruction fun]
-: FUNC ID  PARIZQ PARDER LLAVEIZQ block LLAVEDER           { $fun = instructions.NweDeclarationFunc($FUNC.line, $FUNC.pos, $ID.text, environment.NULL, $block.blk) }
+: FUNC ID  PARIZQ PARDER LLAVEIZQ block LLAVEDER                    { $fun = instructions.NewDeclarationFunc($FUNC.line, $FUNC.pos, $ID.text, environment.NULL,  nil ,$block.blk) }
+| FUNC ID PARIZQ listParamsFunc PARDER LLAVEIZQ block LLAVEDER      { $fun = instructions.NewDeclarationFunc($FUNC.line, $FUNC.pos, $ID.text, environment.NULL, $listParamsFunc.lpf, $block.blk) }
 ;
+
+listParamsFunc returns[[]interface{} lpf]
+: list=listParamsFunc COMA id1=(ID|GBAJO)? id2=ID DOSP INOUT? typestmt {
+    var arr []interface{}
+    newParam := instructions.NewParamsDeclaration($id2.line, $id2.pos, $id1.text,$id2.text,$INOUT.text, $typestmt.type)
+    arr = append($list.lpf, newParam)
+    $lpf = arr
+    }
+| id1=(ID|GBAJO)? id2=ID DOSP INOUT? typestmt {
+    $lpf = []interface{}{}
+    
+    newParam := instructions.NewParamsDeclaration($id2.line, $id2.pos, $id1.text,$id2.text,$INOUT.text, $typestmt.type)
+    $lpf = append($lpf, newParam)
+    }
+|  { $lpf = []interface{}{} }
+;
+
 
 //LLAMADA DE FUNCIONES (instrucion)
 funcallstmt returns[interfaces.Instruction cfun]
-: ID PARIZQ PARDER                                          { $cfun = instructions.NewFunCall($ID.line, $ID.pos, $ID.text) }
+: ID PARIZQ PARDER                                          { $cfun = instructions.NewFunCall($ID.line, $ID.pos, $ID.text, nil) }
+| ID PARIZQ listParams PARDER                               { $cfun = instructions.NewFunCall($ID.line, $ID.pos, $ID.text, $listParams.l) }
 ;
 
 //PRINT
 printstmt returns [interfaces.Instruction prnt]
 : PRINT PARIZQ expr PARDER                                  { $prnt = instructions.NewPrint($PRINT.line,$PRINT.pos,$expr.e)}
+| PRINT PARIZQ listParams PARDER                            { $prnt = instructions.NewPrint($PRINT.line,$PRINT.pos,expressions.NewArray($PARIZQ.line, $PARIZQ.pos, $listParams.l))}
 ;
+
 //DECLARACIONES
 variablestmt returns [interfaces.Instruction vari]
 //variables
@@ -94,6 +134,7 @@ variablestmt returns [interfaces.Instruction vari]
 //inmutables
 | LET ID IG primitives                                          { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, environment.NULL, $primitives.p, false) }
 | LET ID DOSP typestmt IG primitives                            { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, $typestmt.type, $primitives.p, false) }
+| LET ID IG expr                                                { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, environment.NULL, $expr.e, false) }
 //asignacion
 | ID IG expr                                                    { $vari = instructions.NewAssigment($ID.line, $ID.pos, $ID.text, $expr.e) }
 | ID CORIZQ e1=expr CORDER IG e2=expr                           { $vari = instructions.NewAssigmentVec($ID.line, $ID.pos, $ID.text, $e1.e, $e2.e) }
@@ -109,6 +150,8 @@ variablestmt returns [interfaces.Instruction vari]
     expressions.NewArray($CORIZQ.line, $CORIZQ.pos, nil),
     true)
 }
+//Struct
+| VAR ID IG expr                                                { $vari = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, environment.STRUCT , $expr.e,true) }
 ;
 
 //TIPOS
@@ -179,10 +222,18 @@ cases returns [[]interface{} casesinst]
     
 }
 ;
+
 //WHILE
 whilestmt returns [interfaces.Instruction whileinst]
 : WHILE expr LLAVEIZQ block LLAVEDER                        { $whileinst = instructions.NewWhile($WHILE.line, $WHILE.pos, $expr.e, $block.blk) }
 ;
+
+//FOR
+forstmt returns [interfaces.Instruction forinst]
+: FOR ID IN e1=primitives TRESP e2=primitives LLAVEIZQ block LLAVEDER                     { $forinst = instructions.NewForRange($FOR.line, $FOR.pos,$ID.text ,$e1.p,$e2.p ,$block.blk) }
+| FOR ID IN expr LLAVEIZQ block LLAVEDER                                                  { $forinst = instructions.NewFor($FOR.line, $FOR.pos,$ID.text ,$expr.e ,$block.blk) }
+;
+
 //EXPRESIONES
 expr returns [interfaces.Expression e]
 //operaciones
@@ -208,6 +259,7 @@ expr returns [interfaces.Expression e]
 | ID PUNTO COUNT                                            { $e = expressions.NewCount($ID.line, $ID.pos, $ID.text) }
 | ID PUNTO ISEMPTY                                          { $e = expressions.NewIsEmpty($ID.line, $ID.pos, $ID.text) }
 | listAceso                                                 { $e = expressions.NewArray($CORIZQ.line, $CORIZQ.pos, $listAceso.l) }
+| ID PARIZQ listStructExp PARDER                            { $e = expressions.NewStructExp($ID.line, $ID.pos, $ID.text, $listStructExp.l ) }
 ;
 
 //EXPRESIONES PRIMITIVAS
@@ -261,6 +313,8 @@ listParams returns[[]interface{} l]
 listArray returns[interfaces.Expression p]
 : list = listArray CORIZQ expr CORDER { $p = expressions.NewArrayAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $expr.e) }
 | ID { $p = expressions.NewCallVariable($ID.line, $ID.pos, $ID.text)}
+//aceder struct
+| list = listArray PUNTO ID { $p = expressions.NewStructAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $ID.text)  }
 ;
 
 //Asignacion de vectores
@@ -275,5 +329,23 @@ listAceso returns[[]interface{} l]
 {
     $l = []interface{}{}
     $l = append($l, $expr.e)
+}
+;
+//Lista de expresiones Struct
+listStructExp returns[[]interface{} l]
+: list=listStructExp COMA ID DOSP expr {
+    var arr []interface{}
+    StrExp := environment.NewStructContent($ID.text, $expr.e)
+    arr = append($list.l, StrExp)
+    $l = arr
+}   
+| ID DOSP expr{
+    var arr []interface{}
+    StrExp := environment.NewStructContent($ID.text, $expr.e)
+    arr = append(arr, StrExp)
+    $l = arr
+}
+|   {
+    $l = []interface{}{}
 }
 ;

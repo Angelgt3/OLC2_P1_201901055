@@ -38,6 +38,7 @@ SELF:                   'self';
 MUTATING:               'mutating';
 FUNC:                   'func';
 AT:                     'at';
+INOUT:                  'inout';
 
 // primitives
 NUMBER : [0-9]+ ('.'[0-9]+)?;
@@ -74,6 +75,8 @@ INTCE:              '?';
 FLECHA:             '->';
 AMP:                '&';
 PCOMA:              ';';
+GBAJO:              '_';
+TRESP:              '...';
 
 // skip
 WHITESPACE:         [ \\\r\n\t]+ -> skip;

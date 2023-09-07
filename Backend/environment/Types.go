@@ -16,4 +16,5 @@ const (
 	A_BOOLEAN                      //10
 	A_NULL                         //11
 	A_CHAR                         //12
+	STRUCT                         //13
 )

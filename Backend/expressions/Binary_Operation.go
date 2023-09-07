@@ -25,17 +25,17 @@ func (operacion BinaryOperation) Ejecutar(ast *environment.AST, env interface{})
 
 	tabla_dominante := [6][6]environment.TipoExpresion{
 		//		INTEGER			FLOAT				STRING				BOOLEAN				NULL			CHAR
-		{environment.INTEGER, environment.FLOAT, environment.STRING, environment.BOOLEAN, environment.NULL, environment.STRING},
+		{environment.INTEGER, environment.FLOAT, environment.NULL, environment.NULL, environment.NULL, environment.NULL},
 		//FLOAT
-		{environment.FLOAT, environment.FLOAT, environment.STRING, environment.NULL, environment.NULL, environment.STRING},
+		{environment.FLOAT, environment.FLOAT, environment.NULL, environment.NULL, environment.NULL, environment.NULL},
 		//STRING
-		{environment.STRING, environment.STRING, environment.STRING, environment.STRING, environment.NULL, environment.STRING},
+		{environment.NULL, environment.NULL, environment.STRING, environment.NULL, environment.NULL, environment.NULL},
 		//BOOLEAN
-		{environment.BOOLEAN, environment.NULL, environment.STRING, environment.BOOLEAN, environment.NULL, environment.STRING},
+		{environment.NULL, environment.NULL, environment.NULL, environment.NULL, environment.NULL, environment.NULL},
 		//NULL
 		{environment.NULL, environment.NULL, environment.NULL, environment.NULL, environment.NULL, environment.NULL},
 		//CHAR
-		{environment.STRING, environment.STRING, environment.STRING, environment.STRING, environment.NULL, environment.STRING},
+		{environment.NULL, environment.NULL, environment.NULL, environment.NULL, environment.NULL, environment.NULL},
 	}
 
 	var op1, op2 environment.Symbol
@@ -135,6 +135,14 @@ func (operacion BinaryOperation) Ejecutar(ast *environment.AST, env interface{})
 				val1, _ := strconv.ParseFloat(fmt.Sprintf("%v", op1.Valor), 64)
 				val2, _ := strconv.ParseFloat(fmt.Sprintf("%v", op2.Valor), 64)
 				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: val1 < val2}
+			} else if dominante == environment.STRING {
+				r1 := fmt.Sprintf("%v", op1.Valor)
+				r2 := fmt.Sprintf("%v", op2.Valor)
+				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: r1 < r2}
+			} else if dominante == environment.CHAR {
+				r1 := fmt.Sprintf("%v", op1.Valor)
+				r2 := fmt.Sprintf("%v", op2.Valor)
+				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: r1 < r2}
 			} else {
 				ast.SetError("ERROR: No es posible comparar <", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 			}
@@ -148,6 +156,14 @@ func (operacion BinaryOperation) Ejecutar(ast *environment.AST, env interface{})
 				val1, _ := strconv.ParseFloat(fmt.Sprintf("%v", op1.Valor), 64)
 				val2, _ := strconv.ParseFloat(fmt.Sprintf("%v", op2.Valor), 64)
 				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: val1 > val2}
+			} else if dominante == environment.STRING {
+				r1 := fmt.Sprintf("%v", op1.Valor)
+				r2 := fmt.Sprintf("%v", op2.Valor)
+				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: r1 > r2}
+			} else if dominante == environment.CHAR {
+				r1 := fmt.Sprintf("%v", op1.Valor)
+				r2 := fmt.Sprintf("%v", op2.Valor)
+				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: r1 > r2}
 			} else {
 				ast.SetError("ERROR: No es posible comparar >", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 			}
@@ -161,6 +177,14 @@ func (operacion BinaryOperation) Ejecutar(ast *environment.AST, env interface{})
 				val1, _ := strconv.ParseFloat(fmt.Sprintf("%v", op1.Valor), 64)
 				val2, _ := strconv.ParseFloat(fmt.Sprintf("%v", op2.Valor), 64)
 				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: val1 <= val2}
+			} else if dominante == environment.STRING {
+				r1 := fmt.Sprintf("%v", op1.Valor)
+				r2 := fmt.Sprintf("%v", op2.Valor)
+				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: r1 <= r2}
+			} else if dominante == environment.CHAR {
+				r1 := fmt.Sprintf("%v", op1.Valor)
+				r2 := fmt.Sprintf("%v", op2.Valor)
+				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: r1 <= r2}
 			} else {
 				ast.SetError("ERROR: No es posible comparar <=", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 			}
@@ -174,6 +198,14 @@ func (operacion BinaryOperation) Ejecutar(ast *environment.AST, env interface{})
 				val1, _ := strconv.ParseFloat(fmt.Sprintf("%v", op1.Valor), 64)
 				val2, _ := strconv.ParseFloat(fmt.Sprintf("%v", op2.Valor), 64)
 				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: val1 >= val2}
+			} else if dominante == environment.STRING {
+				r1 := fmt.Sprintf("%v", op1.Valor)
+				r2 := fmt.Sprintf("%v", op2.Valor)
+				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: r1 >= r2}
+			} else if dominante == environment.CHAR {
+				r1 := fmt.Sprintf("%v", op1.Valor)
+				r2 := fmt.Sprintf("%v", op2.Valor)
+				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: r1 >= r2}
 			} else {
 				ast.SetError("ERROR: No es posible comparar >=", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 			}

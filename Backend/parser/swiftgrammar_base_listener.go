@@ -1,4 +1,4 @@
-// Code generated from SwiftGrammar.g4 by ANTLR 4.13.0. DO NOT EDIT.
+// Code generated from SwiftGrammar.g4 by ANTLR 4.13.1. DO NOT EDIT.
 
 package parser // SwiftGrammar
 import "github.com/antlr4-go/antlr/v4"
@@ -38,11 +38,29 @@ func (s *BaseSwiftGrammarListener) EnterInstruction(ctx *InstructionContext) {}
 // ExitInstruction is called when production instruction is exited.
 func (s *BaseSwiftGrammarListener) ExitInstruction(ctx *InstructionContext) {}
 
+// EnterStructCreation is called when production structCreation is entered.
+func (s *BaseSwiftGrammarListener) EnterStructCreation(ctx *StructCreationContext) {}
+
+// ExitStructCreation is called when production structCreation is exited.
+func (s *BaseSwiftGrammarListener) ExitStructCreation(ctx *StructCreationContext) {}
+
+// EnterListStructDec is called when production listStructDec is entered.
+func (s *BaseSwiftGrammarListener) EnterListStructDec(ctx *ListStructDecContext) {}
+
+// ExitListStructDec is called when production listStructDec is exited.
+func (s *BaseSwiftGrammarListener) ExitListStructDec(ctx *ListStructDecContext) {}
+
 // EnterFuncstmt is called when production funcstmt is entered.
 func (s *BaseSwiftGrammarListener) EnterFuncstmt(ctx *FuncstmtContext) {}
 
 // ExitFuncstmt is called when production funcstmt is exited.
 func (s *BaseSwiftGrammarListener) ExitFuncstmt(ctx *FuncstmtContext) {}
+
+// EnterListParamsFunc is called when production listParamsFunc is entered.
+func (s *BaseSwiftGrammarListener) EnterListParamsFunc(ctx *ListParamsFuncContext) {}
+
+// ExitListParamsFunc is called when production listParamsFunc is exited.
+func (s *BaseSwiftGrammarListener) ExitListParamsFunc(ctx *ListParamsFuncContext) {}
 
 // EnterFuncallstmt is called when production funcallstmt is entered.
 func (s *BaseSwiftGrammarListener) EnterFuncallstmt(ctx *FuncallstmtContext) {}
@@ -110,6 +128,12 @@ func (s *BaseSwiftGrammarListener) EnterWhilestmt(ctx *WhilestmtContext) {}
 // ExitWhilestmt is called when production whilestmt is exited.
 func (s *BaseSwiftGrammarListener) ExitWhilestmt(ctx *WhilestmtContext) {}
 
+// EnterForstmt is called when production forstmt is entered.
+func (s *BaseSwiftGrammarListener) EnterForstmt(ctx *ForstmtContext) {}
+
+// ExitForstmt is called when production forstmt is exited.
+func (s *BaseSwiftGrammarListener) ExitForstmt(ctx *ForstmtContext) {}
+
 // EnterExpr is called when production expr is entered.
 func (s *BaseSwiftGrammarListener) EnterExpr(ctx *ExprContext) {}
 
@@ -139,3 +163,9 @@ func (s *BaseSwiftGrammarListener) EnterListAceso(ctx *ListAcesoContext) {}
 
 // ExitListAceso is called when production listAceso is exited.
 func (s *BaseSwiftGrammarListener) ExitListAceso(ctx *ListAcesoContext) {}
+
+// EnterListStructExp is called when production listStructExp is entered.
+func (s *BaseSwiftGrammarListener) EnterListStructExp(ctx *ListStructExpContext) {}
+
+// ExitListStructExp is called when production listStructExp is exited.
+func (s *BaseSwiftGrammarListener) ExitListStructExp(ctx *ListStructExpContext) {}

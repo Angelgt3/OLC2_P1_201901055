@@ -7,6 +7,7 @@ import (
 	"reflect"
 )
 
+// variables
 type Declaration struct {
 	Lin        int
 	Col        int
@@ -64,6 +65,7 @@ func (p Declaration) Ejecutar(ast *environment.AST, env interface{}) interface{}
 	return nil
 }
 
+// validacion matriz
 func (p Declaration) MatrizValidation(ast *environment.AST, env interface{}, result environment.Symbol) bool {
 	//validaciones de matriz
 
@@ -100,6 +102,7 @@ func (p Declaration) recursividad_valores_matriz(ast *environment.AST, env inter
 
 }
 
+// validacion array
 func (p Declaration) ArrayValidation(ast *environment.AST, env interface{}, result environment.Symbol) bool {
 	//validaciones de array
 	//fmt.Println("p:", p)
@@ -118,24 +121,52 @@ func (p Declaration) ArrayValidation(ast *environment.AST, env interface{}, resu
 	return true
 }
 
+// funciones
 type DeclarationFunc struct {
-	Lin    int
-	Col    int
-	Id     string
-	Tipo   environment.TipoExpresion
-	Bloque []interface{}
+	Lin        int
+	Col        int
+	Id         string
+	Tipo       environment.TipoExpresion
+	Parametros []interface{}
+	Bloque     []interface{}
 }
 
-func NweDeclarationFunc(lin int, col int, id string, tipo environment.TipoExpresion, bloque []interface{}) DeclarationFunc {
-	instr := DeclarationFunc{lin, col, id, tipo, bloque}
+func NewDeclarationFunc(lin int, col int, id string, tipo environment.TipoExpresion, parametros []interface{}, bloque []interface{}) DeclarationFunc {
+	instr := DeclarationFunc{lin, col, id, tipo, parametros, bloque}
 	return instr
 }
 
 func (p DeclarationFunc) Ejecutar(ast *environment.AST, env interface{}) interface{} {
-	//Traer simbolo
-	value := environment.InstF{p.Lin, p.Col, p.Tipo, p.Bloque}
+
+	value := environment.InstF{
+		Lin:        p.Lin,
+		Col:        p.Col,
+		Id:         p.Id,
+		Tipo:       p.Tipo,
+		Parametros: p.Parametros,
+		Bloque:     p.Bloque,
+	}
+
 	env.(environment.Environment).SaveFunc(p.Id, value)
 	ast.SetRs(p.Id, "Funcion", p.Tipo, env.(environment.Environment).GetEntorno(), p.Lin, p.Col)
 
+	return nil
+}
+
+// Declaracion de struct
+type Struct struct {
+	Lin     int
+	Col     int
+	Id      string
+	ListAtr []interface{}
+}
+
+func NewStruct(lin int, col int, id string, list []interface{}) Struct {
+	instr := Struct{lin, col, id, list}
+	return instr
+}
+
+func (p Struct) Ejecutar(ast *environment.AST, env interface{}) interface{} {
+	env.(environment.Environment).SaveStruct(p.Id, p.ListAtr)
 	return nil
 }

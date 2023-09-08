@@ -49,6 +49,9 @@ type SwiftGrammarListener interface {
 	// EnterFunvecstmt is called when entering the funvecstmt production.
 	EnterFunvecstmt(c *FunvecstmtContext)
 
+	// EnterGuardstmt is called when entering the guardstmt production.
+	EnterGuardstmt(c *GuardstmtContext)
+
 	// EnterIfstmt is called when entering the ifstmt production.
 	EnterIfstmt(c *IfstmtContext)
 
@@ -126,6 +129,9 @@ type SwiftGrammarListener interface {
 
 	// ExitFunvecstmt is called when exiting the funvecstmt production.
 	ExitFunvecstmt(c *FunvecstmtContext)
+
+	// ExitGuardstmt is called when exiting the guardstmt production.
+	ExitGuardstmt(c *GuardstmtContext)
 
 	// ExitIfstmt is called when exiting the ifstmt production.
 	ExitIfstmt(c *IfstmtContext)

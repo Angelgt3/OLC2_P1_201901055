@@ -30,7 +30,7 @@ GUARD:                  'guard';
 APPEND:                 'append';
 REMOVELAST:             'removeLast';
 REMOVE:                 'remove';
-ISEMPTY:                'IsEmpty';
+ISEMPTY:                'isEmpty';
 COUNT:                  'count';
 REPEATING:              'repeating';
 STRUCT:                 'struct';
@@ -39,6 +39,7 @@ MUTATING:               'mutating';
 FUNC:                   'func';
 AT:                     'at';
 INOUT:                  'inout';
+NIL:                    'nil';
 
 // primitives
 NUMBER : [0-9]+ ('.'[0-9]+)?;

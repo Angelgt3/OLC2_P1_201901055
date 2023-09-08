@@ -54,6 +54,7 @@ block2 returns [[]interface{} blk2]
 instruction returns [interfaces.Instruction inst]
 : printstmt PCOMA?                                                  { $inst = $printstmt.prnt}
 | variablestmt PCOMA?                                               { $inst = $variablestmt.vari}
+| guardstmt                                                         { $inst = $guardstmt.guinst }
 | ifstmt                                                            { $inst = $ifstmt.ifinst }
 | switchstmt                                                        { $inst = $switchstmt.swinst }
 | whilestmt                                                         { $inst = $whilestmt.whileinst }
@@ -142,8 +143,8 @@ variablestmt returns [interfaces.Instruction vari]
 | VAR ID IG expr                                                { $vari = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, environment.NULL, $expr.e, true) }
 | VAR ID DOSP typestmt INTCE                                    { $vari = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $typestmt.type, expressions.NewPrimitive($ID.line, $ID.pos, nil, environment.NULL), true) }
 //inmutables
-//| LET ID IG primitives                                          { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, environment.NULL, $primitives.p, false) }
-//| LET ID DOSP typestmt IG primitives                            { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, $typestmt.type, $primitives.p, false) }
+| LET ID IG primitives                                          { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, environment.NULL, $primitives.p, false) }
+| LET ID DOSP typestmt IG primitives                            { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, $typestmt.type, $primitives.p, false) }
 | LET ID IG expr                                                { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, environment.NULL, $expr.e, false) }
 | LET ID DOSP typestmt IG expr                                  { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, $typestmt.type, $expr.e, false) }
 | LET ID IG expr                                                { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, environment.NULL, $expr.e, false) }
@@ -190,6 +191,11 @@ funvecstmt returns [interfaces.Instruction fvecisnt]
 : ID PUNTO APPEND PARIZQ expr PARDER            { $fvecisnt = instructions.NewAppend($ID.line, $ID.pos, $ID.text , $expr.e) }
 | ID PUNTO REMOVELAST PARIZQ PARDER             { $fvecisnt = instructions.NewRemoveLast($ID.line, $ID.pos, $ID.text) }
 | ID PUNTO REMOVE PARIZQ AT DOSP expr PARDER    { $fvecisnt = instructions.NewRemove($ID.line, $ID.pos, $ID.text , $expr.e) }
+;
+
+//GUARD
+guardstmt returns [interfaces.Instruction guinst]
+:GUARD expr ELSE LLAVEIZQ block LLAVEDER        { $guinst = instructions.NewGuard($GUARD.line, $GUARD.pos, $expr.e, $block.blk) }
 ;
 
 //IF
@@ -306,6 +312,7 @@ primitives returns [interfaces.Expression p]
     }                    
 | TRU                                                       { $p = expressions.NewPrimitive($TRU.line, $TRU.pos, true, environment.BOOLEAN) }
 | FAL                                                       { $p = expressions.NewPrimitive($FAL.line, $FAL.pos, false, environment.BOOLEAN) }
+| NIL                                                       { $p = expressions.NewPrimitive($NIL.line, $NIL.pos, nil, environment.NULL) }
 ;
 
 //  LISTA DE PARAMETROS

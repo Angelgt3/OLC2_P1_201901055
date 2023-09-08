@@ -104,6 +104,12 @@ func (s *BaseSwiftGrammarListener) EnterFunvecstmt(ctx *FunvecstmtContext) {}
 // ExitFunvecstmt is called when production funvecstmt is exited.
 func (s *BaseSwiftGrammarListener) ExitFunvecstmt(ctx *FunvecstmtContext) {}
 
+// EnterGuardstmt is called when production guardstmt is entered.
+func (s *BaseSwiftGrammarListener) EnterGuardstmt(ctx *GuardstmtContext) {}
+
+// ExitGuardstmt is called when production guardstmt is exited.
+func (s *BaseSwiftGrammarListener) ExitGuardstmt(ctx *GuardstmtContext) {}
+
 // EnterIfstmt is called when production ifstmt is entered.
 func (s *BaseSwiftGrammarListener) EnterIfstmt(ctx *IfstmtContext) {}
 

@@ -83,6 +83,7 @@ func ejecutar_analizador(code string) string {
 		inst.(interfaces.Instruction).Ejecutar(&Ast, globalenvioment)
 	}
 
+	reports.Crear_CST(code)
 	reports.Rts(Ast)
 	reports.RErrors(Ast)
 	return string(Ast.GetPrint())

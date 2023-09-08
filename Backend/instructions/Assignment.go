@@ -58,7 +58,7 @@ func (p AssigmentVec) Ejecutar(ast *environment.AST, env interface{}) interface{
 	var variable = environment.Symbol{}
 	variable = env.(environment.Environment).GetVariable(p.Id)
 	if variable.Tipo < environment.ARRAY || variable.Tipo > environment.A_CHAR {
-		fmt.Println("La variable no es un vector para realizar esta asignacion")
+		ast.SetError("La variable no es un vector para realizar esta asignacion", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		return nil
 	}
 
@@ -75,14 +75,14 @@ func (p AssigmentVec) Ejecutar(ast *environment.AST, env interface{}) interface{
 				newvariable_valor = append(newvariable_valor, result2)
 				se_encontro = true
 			} else {
-				fmt.Println("No se le puede asignar un valor de distinto tipo")
+				ast.SetError("No se le puede asignar un valor de distinto tipo del vector", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 				return nil
 			}
 
 		}
 	}
 	if !se_encontro {
-		fmt.Println("Posicion que se busca es inexistente")
+		ast.SetError("Posicion que se busca en el vector es inexistente", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		return nil
 	}
 	variable.Valor = newvariable_valor
@@ -130,7 +130,7 @@ func (p AssigmentMatriz) Ejecutar(ast *environment.AST, env interface{}) interfa
 	var variable = environment.Symbol{}
 	variable = env.(environment.Environment).GetVariable(p.Id)
 	if variable.Tipo < environment.ARRAY || variable.Tipo > environment.A_CHAR {
-		fmt.Println("La variable no es un matriz para realizar esta asignacion")
+		ast.SetError("La variable no es un matriz para realizar esta asignacion", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		return nil
 	}
 
@@ -174,7 +174,7 @@ func (p AssigmentMatriz) Ejecutar(ast *environment.AST, env interface{}) interfa
 	fmt.Println("temp_result:", newvariable_valor)
 
 	if !se_encontro {
-		fmt.Println("Posicion que se busca es inexistente")
+		ast.SetError("Posicion que se busca es inexistente", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		return nil
 	}
 	variable.Valor = newvariable_valor

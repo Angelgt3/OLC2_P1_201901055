@@ -3,7 +3,6 @@ package instructions
 import (
 	"Backend/environment"
 	"Backend/interfaces"
-	"fmt"
 )
 
 type FunCall struct {
@@ -27,7 +26,6 @@ func (p FunCall) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 		return nil
 	}
 	//definiendo nuevo entorno de funcion
-	//var result environment.Symbol
 	var funcEnv environment.Environment
 	//si no es modulo se usa el global como anterior
 	funcEnv = environment.NewEnvironment(environment.GetEntornoGlobal(env), p.Id+"FUNCION")
@@ -36,17 +34,15 @@ func (p FunCall) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 		for i := 0; i < len(p.Parametros); i++ {
 			var val environment.Symbol
 			val = p.Parametros[i].(interfaces.Expression).Ejecutar(ast, env)
-			if val.Tipo == funcion.Parametros[i].(ParamsDeclaration).Tipo { //que sean del mismo tipo los parametros
-				funcEnv.SaveVariable(funcion.Parametros[i].(ParamsDeclaration).Id_Interno, false, val)
+			if val.Tipo == funcion.Parametros[i].(ParamsDeclaration).Tipo || (val.Tipo == environment.ARRAY && funcion.Parametros[i].(ParamsDeclaration).Tipo > environment.ARRAY && funcion.Parametros[i].(ParamsDeclaration).Tipo < environment.A_CHAR) { //que sean del mismo tipo los parametros
+				funcEnv.SaveVariable(funcion.Parametros[i].(ParamsDeclaration).Id_Interno, true, val)
 			} else {
-				//ast.SetError("El tipo de parámetro es incorrecto")
-				fmt.Println("El tipo de parámetro es incorrecto")
+				ast.SetError("El tipo de parámetro es incorrecto", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 				return nil
 			}
 		}
 	} else {
-		fmt.Println("Faltan parámetros en la función")
-		//ast.SetError("Faltan parámetros en la función")
+		ast.SetError("Faltan parámetros en la función", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		return nil
 	}
 

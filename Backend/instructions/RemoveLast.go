@@ -2,7 +2,6 @@ package instructions
 
 import (
 	"Backend/environment"
-	"fmt"
 )
 
 type RemoveLast struct {
@@ -24,7 +23,7 @@ func (p RemoveLast) Ejecutar(ast *environment.AST, env interface{}) interface{} 
 
 	//verificar que la variable llamada sea vector
 	if variable.Tipo < environment.ARRAY || variable.Tipo > environment.A_CHAR {
-		fmt.Println("La variable no es un vector para realizar removelast")
+		ast.SetError("La variable no es un vector para llamar la funcion removelast", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		return nil
 	}
 
@@ -38,7 +37,7 @@ func (p RemoveLast) Ejecutar(ast *environment.AST, env interface{}) interface{} 
 	if len(newvariable_valor) > 0 {
 		newvariable_valor = newvariable_valor[:len(newvariable_valor)-1]
 	} else {
-		fmt.Println("El vector esta vacio para realizar removelast")
+		ast.SetError("El vector esta vacio para realizar la funcion removelast", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 	}
 	variable.Valor = newvariable_valor
 

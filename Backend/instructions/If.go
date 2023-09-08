@@ -3,7 +3,6 @@ package instructions
 import (
 	"Backend/environment"
 	"Backend/interfaces"
-	"fmt"
 )
 
 type If struct {
@@ -37,7 +36,6 @@ func (p If) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 	condicion = p.Expresion.Ejecutar(ast, env)
 	//Validando tipo
 	if condicion.Tipo != environment.BOOLEAN {
-		fmt.Println("El tipo de variable es incorrecto para un If")
 		ast.SetError("El tipo de variable es incorrecto para un If", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		return nil
 	}
@@ -53,6 +51,8 @@ func (p If) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 					return "break"
 				} else if valor, ok := trasferencia.(string); ok && valor == "continue" {
 					return "continue"
+				} else {
+					return trasferencia
 				}
 			}
 		}
@@ -69,9 +69,12 @@ func (p If) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 							return "break"
 						} else if valor, ok := result_elif.(string); ok && valor == "continue" {
 							return "continue"
-						}
-						if result_elif == true { //si ya realizo un bloque else if se sale
+						} else if valor, ok := result_elif.(string); ok && valor == "true" {
 							return nil
+						} else if valor, ok := result_elif.(string); ok && valor == "false" {
+							continue
+						} else {
+							return result_elif
 						}
 					}
 				}
@@ -91,6 +94,8 @@ func (p If) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 					return "break"
 				} else if valor, ok := trasferencia.(string); ok && valor == "continue" {
 					return "continue"
+				} else {
+					return trasferencia
 				}
 			}
 		}
@@ -104,7 +109,6 @@ func (p Elif) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 	condicion = p.Expresion.Ejecutar(ast, env)
 	//Validando tipo
 	if condicion.Tipo != environment.BOOLEAN {
-		fmt.Println("El tipo de variable es incorrecto para un else if")
 		ast.SetError("El tipo de variable es incorrecto para un else if", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		return nil
 	}
@@ -120,10 +124,12 @@ func (p Elif) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 					return "break"
 				} else if valor, ok := trasferencia.(string); ok && valor == "continue" {
 					return "continue"
+				} else {
+					return trasferencia
 				}
 			}
 		}
-		return true
+		return "true"
 	}
-	return false
+	return "false"
 }

@@ -3,7 +3,6 @@ package expressions
 import (
 	"Backend/environment"
 	"Backend/interfaces"
-	"fmt"
 )
 
 type Array struct {
@@ -59,8 +58,6 @@ func (p ArrayAccess) Ejecutar(ast *environment.AST, env interface{}) environment
 			return valret
 		} else {
 			ast.SetError("Indice fuera de los limites", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
-			fmt.Println("indice: ", tempIndex.Valor.(int))
-			fmt.Println("tamaño: ", len(tempValue.([]interface{})))
 		}
 
 	} else {

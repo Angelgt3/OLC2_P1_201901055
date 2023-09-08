@@ -44,18 +44,17 @@ func (p StructExp) Ejecutar(ast *environment.AST, env interface{}) environment.S
 						valor[resultStruct.Valor.([]interface{})[i].(environment.StructType).Id] = tempVal
 					} else {
 						fmt.Println("El tipo de parámetro de la variable " + p.ListExp[i].(environment.StructContent).Id + " es incorrecto")
-						//ast.SetError("El tipo de parámetro de la variable " + p.ListExp[i].(environment.StructContent).Id + " es incorrecto")
+						ast.SetError("El tipo de parámetro de la variable "+p.ListExp[i].(environment.StructContent).Id+" es incorrecto", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 					}
 				}
 			}
 			result = environment.Symbol{Lin: p.Lin, Col: p.Col, Tipo: environment.STRUCT, Valor: valor}
 		} else {
-			fmt.Println("La cantidad de valores en el struct es incorrecta")
-			//ast.SetError("La cantidad de valores en el struct es incorrecta")
+			ast.SetError("La cantidad de valores en el struct es incorrecta", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		}
 	} else {
-		fmt.Println("No se ha encontrado el struct correspondiente")
-		//ast.SetError("No se ha encontrado el struct correspondiente")
+		ast.SetError("No se ha encontrado el struct correspondiente", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
+
 	}
 	return result
 }
@@ -82,11 +81,9 @@ func (p StructAccess) Ejecutar(ast *environment.AST, env interface{}) environmen
 		if variable, ok := tempStruct.Valor.(map[string]environment.Symbol)[p.Id]; ok {
 			return variable
 		}
-		fmt.Println("No existe el elemento " + p.Id)
-		//ast.SetError("No existe el elemento " + p.Id)
+		ast.SetError("No existe el elemento "+p.Id, p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		return result
 	}
-	fmt.Println("La expresión no es un struct")
-	//ast.SetError("La expresión no es un struct")
+	ast.SetError("La expresión no es un struct", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 	return result
 }

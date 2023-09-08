@@ -3,7 +3,6 @@ package instructions
 import (
 	"Backend/environment"
 	"Backend/interfaces"
-	"fmt"
 )
 
 type RestAssigment struct {
@@ -38,9 +37,7 @@ func (p RestAssigment) Ejecutar(ast *environment.AST, env interface{}) interface
 		result.Valor = variable.Valor.(int) - result.Valor.(int)
 		result.Tipo = environment.INTEGER
 	} else {
-
-		ast.SetError("ERROR: No es posible realizar la restar", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
-		fmt.Println("No se puedo realizar la resta")
+		ast.SetError(" No es posible realizar la restar", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		return nil
 	}
 	//modificar la variable si se puede

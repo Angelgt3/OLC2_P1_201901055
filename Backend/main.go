@@ -63,8 +63,6 @@ func enableCors(w *http.ResponseWriter) {
 }
 
 func ejecutar_analizador(code string) string {
-	//Entrada
-	//code := "print(10)"
 	//Leyendo entrada
 	input := antlr.NewInputStream(code)
 	lexer := parser.NewSwiftLexer(input)

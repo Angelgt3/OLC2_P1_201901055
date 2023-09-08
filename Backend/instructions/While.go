@@ -3,7 +3,6 @@ package instructions
 import (
 	"Backend/environment"
 	"Backend/interfaces"
-	"fmt"
 )
 
 type While struct {
@@ -23,7 +22,6 @@ func (p While) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 	var condicion environment.Symbol
 	condicion = p.Expresion.Ejecutar(ast, env)
 	if condicion.Tipo != environment.BOOLEAN {
-		fmt.Println("El tipo de variable es incorrecto para la condicion del while")
 		ast.SetError("El tipo de variable es incorrecto para la condicion del while", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 	}
 	//Ejecutando while
@@ -43,6 +41,8 @@ func (p While) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 					return nil //se sale del ciclo
 				} else if valor, ok := trasferencia.(string); ok && valor == "continue" {
 					break //termina el ciclo (inicia de nuevo)
+				} else {
+					return trasferencia
 				}
 			}
 		}

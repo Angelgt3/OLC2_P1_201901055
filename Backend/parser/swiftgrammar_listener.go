@@ -31,6 +31,9 @@ type SwiftGrammarListener interface {
 	// EnterFuncallstmt is called when entering the funcallstmt production.
 	EnterFuncallstmt(c *FuncallstmtContext)
 
+	// EnterFuncallestmt is called when entering the funcallestmt production.
+	EnterFuncallestmt(c *FuncallestmtContext)
+
 	// EnterPrintstmt is called when entering the printstmt production.
 	EnterPrintstmt(c *PrintstmtContext)
 
@@ -105,6 +108,9 @@ type SwiftGrammarListener interface {
 
 	// ExitFuncallstmt is called when exiting the funcallstmt production.
 	ExitFuncallstmt(c *FuncallstmtContext)
+
+	// ExitFuncallestmt is called when exiting the funcallestmt production.
+	ExitFuncallestmt(c *FuncallestmtContext)
 
 	// ExitPrintstmt is called when exiting the printstmt production.
 	ExitPrintstmt(c *PrintstmtContext)

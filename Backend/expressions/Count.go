@@ -2,7 +2,6 @@ package expressions
 
 import (
 	"Backend/environment"
-	"fmt"
 )
 
 type Count struct {
@@ -24,7 +23,7 @@ func (p Count) Ejecutar(ast *environment.AST, env interface{}) environment.Symbo
 
 	//verificar que la variable llamada sea vector
 	if variable.Tipo < environment.ARRAY || variable.Tipo > environment.A_CHAR {
-		fmt.Println("La variable no es un vector para realizar count")
+		ast.SetError("La variable no es un vector para llamar la funcion count", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		return environment.Symbol{
 			Lin:   p.Lin,
 			Col:   p.Col,

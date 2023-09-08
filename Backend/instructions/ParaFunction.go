@@ -29,7 +29,8 @@ func (p ParamsDeclaration) Ejecutar(ast *environment.AST, env interface{}) inter
 		Valor: 0,
 	}
 
-	env.(environment.Environment).SaveVariable(p.Id_Interno, false, result)
+	env.(environment.Environment).SaveVariable(p.Id_Interno, true, result)
+	ast.SetRs(p.Id_Interno, "Variable", p.Tipo, env.(environment.Environment).GetEntorno(), p.Lin, p.Col)
 
 	return nil
 }

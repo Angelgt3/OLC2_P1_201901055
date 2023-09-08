@@ -62,9 +62,9 @@ instruction returns [interfaces.Instruction inst]
 | BREAK PCOMA?                                                      { $inst = instructions.NewBreak($BREAK.line, $BREAK.pos) }
 | CONTINUE PCOMA?                                                   { $inst = instructions.NewContinue($CONTINUE.line, $CONTINUE.pos) }
 | RETURN expr PCOMA?                                                { $inst = instructions.NewReturn($RETURN.line, $RETURN.pos, $expr.e) }
+| funcallstmt                                                       { $inst = $funcallstmt.cfun }
 //globales
 | funcstmt                                                          { $inst = $funcstmt.fun }
-| funcallstmt                                                       { $inst = $funcallstmt.cfun }
 | structCreation                                                    { $inst = $structCreation.dec }
 ;
 
@@ -92,8 +92,10 @@ listStructDec returns[[]interface{} l]
 
 // FUNCIONES- DECLARACION
 funcstmt returns [interfaces.Instruction fun]
-: FUNC ID  PARIZQ PARDER LLAVEIZQ block LLAVEDER                    { $fun = instructions.NewDeclarationFunc($FUNC.line, $FUNC.pos, $ID.text, environment.NULL,  nil ,$block.blk) }
-| FUNC ID PARIZQ listParamsFunc PARDER LLAVEIZQ block LLAVEDER      { $fun = instructions.NewDeclarationFunc($FUNC.line, $FUNC.pos, $ID.text, environment.NULL, $listParamsFunc.lpf, $block.blk) }
+: FUNC ID  PARIZQ PARDER LLAVEIZQ block LLAVEDER                                    { $fun = instructions.NewDeclarationFunc($FUNC.line, $FUNC.pos, $ID.text, environment.NULL,  nil ,$block.blk) }
+| FUNC ID PARIZQ listParamsFunc PARDER LLAVEIZQ block LLAVEDER                      { $fun = instructions.NewDeclarationFunc($FUNC.line, $FUNC.pos, $ID.text, environment.NULL, $listParamsFunc.lpf, $block.blk) }
+| FUNC ID  PARIZQ PARDER FLECHA typestmt LLAVEIZQ block LLAVEDER                    { $fun = instructions.NewDeclarationFunc($FUNC.line, $FUNC.pos, $ID.text, $typestmt.type,  nil ,$block.blk) }
+| FUNC ID PARIZQ listParamsFunc PARDER FLECHA typestmt LLAVEIZQ block LLAVEDER      { $fun = instructions.NewDeclarationFunc($FUNC.line, $FUNC.pos, $ID.text, $typestmt.type, $listParamsFunc.lpf, $block.blk) }
 ;
 
 listParamsFunc returns[[]interface{} lpf]
@@ -119,6 +121,14 @@ funcallstmt returns[interfaces.Instruction cfun]
 | ID PARIZQ listParams PARDER                               { $cfun = instructions.NewFunCall($ID.line, $ID.pos, $ID.text, $listParams.l) }
 ;
 
+
+//LLAMADA DE FUNCIONES (expresion)
+funcallestmt returns[interfaces.Expression cefun]
+: ID PARIZQ PARDER                                          { $cefun = expressions.NewFunCallE($ID.line, $ID.pos, $ID.text, nil) }
+| ID PARIZQ listParams PARDER                               { $cefun = expressions.NewFunCallE($ID.line, $ID.pos, $ID.text, $listParams.l) }
+;
+
+
 //PRINT
 printstmt returns [interfaces.Instruction prnt]
 : PRINT PARIZQ expr PARDER                                  { $prnt = instructions.NewPrint($PRINT.line,$PRINT.pos,$expr.e)}
@@ -132,8 +142,10 @@ variablestmt returns [interfaces.Instruction vari]
 | VAR ID IG expr                                                { $vari = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, environment.NULL, $expr.e, true) }
 | VAR ID DOSP typestmt INTCE                                    { $vari = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $typestmt.type, expressions.NewPrimitive($ID.line, $ID.pos, nil, environment.NULL), true) }
 //inmutables
-| LET ID IG primitives                                          { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, environment.NULL, $primitives.p, false) }
-| LET ID DOSP typestmt IG primitives                            { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, $typestmt.type, $primitives.p, false) }
+//| LET ID IG primitives                                          { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, environment.NULL, $primitives.p, false) }
+//| LET ID DOSP typestmt IG primitives                            { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, $typestmt.type, $primitives.p, false) }
+| LET ID IG expr                                                { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, environment.NULL, $expr.e, false) }
+| LET ID DOSP typestmt IG expr                                  { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, $typestmt.type, $expr.e, false) }
 | LET ID IG expr                                                { $vari = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, environment.NULL, $expr.e, false) }
 //asignacion
 | ID IG expr                                                    { $vari = instructions.NewAssigment($ID.line, $ID.pos, $ID.text, $expr.e) }
@@ -230,7 +242,7 @@ whilestmt returns [interfaces.Instruction whileinst]
 
 //FOR
 forstmt returns [interfaces.Instruction forinst]
-: FOR ID IN e1=primitives TRESP e2=primitives LLAVEIZQ block LLAVEDER                     { $forinst = instructions.NewForRange($FOR.line, $FOR.pos,$ID.text ,$e1.p,$e2.p ,$block.blk) }
+: FOR ID IN e1=expr TRESP e2=expr LLAVEIZQ block LLAVEDER                     { $forinst = instructions.NewForRange($FOR.line, $FOR.pos,$ID.text ,$e1.e,$e2.e ,$block.blk) }
 | FOR ID IN expr LLAVEIZQ block LLAVEDER                                                  { $forinst = instructions.NewFor($FOR.line, $FOR.pos,$ID.text ,$expr.e ,$block.blk) }
 ;
 
@@ -250,9 +262,9 @@ expr returns [interfaces.Expression e]
 | ID                                                        { $e = expressions.NewCallVariable($ID.line, $ID.pos, $ID.text)}   
 | primitives                                                { $e = $primitives.p}
 //casteos
-| INT PARIZQ primitives PARDER                              { $e = expressions.NewCastingInt($INT.line, $INT.pos, $primitives.p ) }
-| FLOAT PARIZQ primitives PARDER                            { $e = expressions.NewCastingFloat($FLOAT.line, $FLOAT.pos, $primitives.p ) }
-| TSTRING PARIZQ primitives PARDER                          { $e = expressions.NewCastingString($TSTRING.line, $TSTRING.pos, $primitives.p ) }
+| INT PARIZQ expr PARDER                                  { $e = expressions.NewCastingInt($INT.line, $INT.pos, $expr.e ) }
+| FLOAT PARIZQ expr PARDER                                { $e = expressions.NewCastingFloat($FLOAT.line, $FLOAT.pos, $expr.e ) }
+| TSTRING PARIZQ expr PARDER                              { $e = expressions.NewCastingString($TSTRING.line, $TSTRING.pos, $expr.e ) }
 //cosas de array
 | listArray                                                 { $e = $listArray.p}
 | CORIZQ listParams CORDER                                  { $e = expressions.NewArray($CORIZQ.line, $CORIZQ.pos, $listParams.l) }
@@ -260,6 +272,8 @@ expr returns [interfaces.Expression e]
 | ID PUNTO ISEMPTY                                          { $e = expressions.NewIsEmpty($ID.line, $ID.pos, $ID.text) }
 | listAceso                                                 { $e = expressions.NewArray($CORIZQ.line, $CORIZQ.pos, $listAceso.l) }
 | ID PARIZQ listStructExp PARDER                            { $e = expressions.NewStructExp($ID.line, $ID.pos, $ID.text, $listStructExp.l ) }
+//Funcion
+| funcallestmt                                              { $e = $funcallestmt.cefun }
 ;
 
 //EXPRESIONES PRIMITIVAS

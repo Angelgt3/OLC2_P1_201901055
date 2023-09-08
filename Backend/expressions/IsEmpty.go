@@ -2,7 +2,6 @@ package expressions
 
 import (
 	"Backend/environment"
-	"fmt"
 )
 
 type IsEmpty struct {
@@ -24,7 +23,7 @@ func (p IsEmpty) Ejecutar(ast *environment.AST, env interface{}) environment.Sym
 
 	//verificar que la variable llamada sea vector
 	if variable.Tipo < environment.ARRAY || variable.Tipo > environment.A_CHAR {
-		fmt.Println("La variable no es un vector para realizar IsEmpty")
+		ast.SetError("La variable no es un vector para llamar la funcion isEmpty", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		return environment.Symbol{
 			Lin:   p.Lin,
 			Col:   p.Col,

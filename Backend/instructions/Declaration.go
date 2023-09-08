@@ -50,7 +50,6 @@ func (p Declaration) Ejecutar(ast *environment.AST, env interface{}) interface{}
 			env.(environment.Environment).SaveVariable(p.Id, p.changeable, result)
 			ast.SetRs(p.Id, "matriz", result.Tipo, env.(environment.Environment).GetEntorno(), p.Lin, p.Col)
 		} else {
-			fmt.Println("La estructura del array es incorrecta")
 			ast.SetError("La estructura del array es incorrecta", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		}
 		// variable con el mismo tipo y valor || variable sin tipo asignado pero con valor
@@ -105,8 +104,6 @@ func (p Declaration) recursividad_valores_matriz(ast *environment.AST, env inter
 // validacion array
 func (p Declaration) ArrayValidation(ast *environment.AST, env interface{}, result environment.Symbol) bool {
 	//validaciones de array
-	//fmt.Println("p:", p)
-	//fmt.Println("result:", result)
 	//si es un vector nulo
 	if result.Valor == nil {
 		return true

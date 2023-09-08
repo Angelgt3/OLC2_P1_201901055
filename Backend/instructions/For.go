@@ -3,7 +3,6 @@ package instructions
 import (
 	"Backend/environment"
 	"Backend/interfaces"
-	"fmt"
 )
 
 type ForRange struct {
@@ -27,7 +26,6 @@ func (p ForRange) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 	var condicion2 environment.Symbol
 	condicion2 = p.Expresion2.Ejecutar(ast, env)
 	if condicion.Tipo != environment.INTEGER || condicion2.Tipo != environment.INTEGER {
-		fmt.Println("El tipo de rango es incorrecto para la condicion del for")
 		ast.SetError("El tipo de rango es incorrecto para la condicion del for", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 	}
 
@@ -48,13 +46,14 @@ func (p ForRange) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 		forEnv.SaveVariable(p.Id, true, result)
 		ast.SetRs(p.Id, "variable", result.Tipo, "FOR", p.Lin, p.Col)
 		for _, inst := range p.Bloque {
-
 			trasferencia := inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
 			if trasferencia != nil {
 				if valor, ok := trasferencia.(string); ok && valor == "break" {
 					return nil //se sale del ciclo
 				} else if valor, ok := trasferencia.(string); ok && valor == "continue" {
 					break //termina el ciclo (inicia de nuevo)
+				} else {
+					return trasferencia
 				}
 			}
 		}
@@ -81,7 +80,6 @@ func (p For) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 	condicion = p.Expresion.Ejecutar(ast, env)
 	if condicion.Tipo != environment.STRING {
 		if condicion.Tipo < environment.ARRAY && condicion.Tipo > environment.A_CHAR {
-			fmt.Println("El tipo de rango es incorrecto para la condicion del for")
 			ast.SetError("El tipo de rango es incorrecto para la condicion del for", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		}
 	}
@@ -109,6 +107,8 @@ func (p For) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 						return nil //se sale del ciclo
 					} else if valor, ok := trasferencia.(string); ok && valor == "continue" {
 						break //termina el ciclo (inicia de nuevo)
+					} else {
+						return trasferencia
 					}
 				}
 			}
@@ -138,6 +138,8 @@ func (p For) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 						return nil //se sale del ciclo
 					} else if valor, ok := trasferencia.(string); ok && valor == "continue" {
 						break //termina el ciclo (inicia de nuevo)
+					} else {
+						return trasferencia
 					}
 				}
 			}

@@ -45,5 +45,5 @@ func NewReturn(lin int, col int, expr interfaces.Expression) Return {
 }
 
 func (p Return) Ejecutar(ast *environment.AST, env interface{}) interface{} {
-	return "return"
+	return p.Expresion
 }

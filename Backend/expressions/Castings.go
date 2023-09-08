@@ -66,14 +66,19 @@ func (p CastingFloat) Ejecutar(ast *environment.AST, env interface{}) environmen
 		temp := result.Valor.(string)
 		floatValue, err := strconv.ParseFloat(temp, 64)
 		if err != nil { //error
-			fmt.Println("No se pudo realizar el casteo a float")
+			ast.SetError("No se pudo realizar el casteo a float", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 			return environment.Symbol{Lin: p.Lin, Col: p.Col, Tipo: environment.NULL, Valor: nil}
 		}
 		result.Valor = floatValue
 		result.Tipo = environment.FLOAT
 
+	} else if result.Tipo == environment.INTEGER {
+		//convetir a float
+		temp := result.Valor.(int)
+		result.Valor = float64(temp)
+		result.Tipo = environment.FLOAT
 	} else {
-		fmt.Println("No se pudo realizar el casteo a float")
+		ast.SetError("No se puede convertir a float por el tipo de dato", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		return environment.Symbol{Lin: p.Lin, Col: p.Col, Tipo: environment.NULL, Valor: nil}
 	}
 
@@ -98,7 +103,7 @@ func (p CastingString) Ejecutar(ast *environment.AST, env interface{}) environme
 		result.Tipo = environment.STRING
 
 	} else {
-		fmt.Println("No se pudo realizar el casteo a string")
+		ast.SetError("No se pudo realizar el casteo a string", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		return environment.Symbol{Lin: p.Lin, Col: p.Col, Tipo: environment.NULL, Valor: nil}
 	}
 	return result

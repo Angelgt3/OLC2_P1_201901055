@@ -3,7 +3,6 @@ package instructions
 import (
 	"Backend/environment"
 	"Backend/interfaces"
-	"fmt"
 )
 
 type Remove struct {
@@ -33,7 +32,7 @@ func (p Remove) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 
 	//verificar que la variable llamada sea vector
 	if variable.Tipo < environment.ARRAY || variable.Tipo > environment.A_CHAR {
-		fmt.Println("La variable no es un vector para realizar remove")
+		ast.SetError("La variable no es un vector para realizar remove", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		return nil
 	}
 
@@ -49,7 +48,7 @@ func (p Remove) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 		}
 	}
 	if !se_encontro {
-		fmt.Println("No se encontro la posicion que se busca eliminar")
+		ast.SetError("No se encontro la posicion que se busca eliminar", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		return nil
 	}
 	variable.Valor = newvariable_valor

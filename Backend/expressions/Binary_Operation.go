@@ -59,7 +59,7 @@ func (operacion BinaryOperation) Ejecutar(ast *environment.AST, env interface{})
 				r2 := fmt.Sprintf("%v", op2.Valor)
 				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: dominante, Valor: r1 + r2}
 			} else {
-				ast.SetError("ERROR: No es posible realizar la sumar", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
+				ast.SetError(" No es posible realizar la sumar", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 			}
 		}
 	case "-":
@@ -73,7 +73,7 @@ func (operacion BinaryOperation) Ejecutar(ast *environment.AST, env interface{})
 				val2, _ := strconv.ParseFloat(fmt.Sprintf("%v", op2.Valor), 64)
 				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: dominante, Valor: val1 - val2}
 			} else {
-				ast.SetError("ERROR: No es posible realizar la restar", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
+				ast.SetError(": No es posible realizar la restar", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 			}
 		}
 	case "*":
@@ -86,7 +86,7 @@ func (operacion BinaryOperation) Ejecutar(ast *environment.AST, env interface{})
 				val2, _ := strconv.ParseFloat(fmt.Sprintf("%v", op2.Valor), 64)
 				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: dominante, Valor: val1 * val2}
 			} else {
-				ast.SetError("ERROR: No es posible realizar la multiplicacion", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
+				ast.SetError(": No es posible realizar la multiplicacion", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 			}
 		}
 	case "/":
@@ -96,7 +96,7 @@ func (operacion BinaryOperation) Ejecutar(ast *environment.AST, env interface{})
 				if op2.Valor.(int) != 0 {
 					return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: dominante, Valor: op1.Valor.(int) / op2.Valor.(int)}
 				} else {
-					ast.SetError("ERROR: No es posible dividir entre cero", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
+					ast.SetError(": No es posible dividir entre cero", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 				}
 
 			} else if dominante == environment.FLOAT {
@@ -105,10 +105,10 @@ func (operacion BinaryOperation) Ejecutar(ast *environment.AST, env interface{})
 				if val2 != 0 {
 					return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: dominante, Valor: val1 / val2}
 				} else {
-					ast.SetError("ERROR: No es posible dividir entre cero", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
+					ast.SetError(": No es posible dividir entre cero", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 				}
 			} else {
-				ast.SetError("ERROR: No es posible realizar la division", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
+				ast.SetError(": No es posible realizar la division", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 			}
 
 		}
@@ -119,10 +119,10 @@ func (operacion BinaryOperation) Ejecutar(ast *environment.AST, env interface{})
 				if op2.Valor.(int) != 0 {
 					return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: dominante, Valor: op1.Valor.(int) % op2.Valor.(int)}
 				} else {
-					ast.SetError("ERROR: No es posible dividir entre cero para realizar el modulo", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
+					ast.SetError(": No es posible dividir entre cero para realizar el modulo", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 				}
 			} else {
-				ast.SetError("ERROR: No es posible realizar el modulo", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
+				ast.SetError(": No es posible realizar el modulo", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 			}
 
 		}
@@ -144,7 +144,7 @@ func (operacion BinaryOperation) Ejecutar(ast *environment.AST, env interface{})
 				r2 := fmt.Sprintf("%v", op2.Valor)
 				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: r1 < r2}
 			} else {
-				ast.SetError("ERROR: No es posible comparar <", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
+				ast.SetError(": No es posible comparar <", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 			}
 		}
 	case ">":
@@ -165,7 +165,7 @@ func (operacion BinaryOperation) Ejecutar(ast *environment.AST, env interface{})
 				r2 := fmt.Sprintf("%v", op2.Valor)
 				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: r1 > r2}
 			} else {
-				ast.SetError("ERROR: No es posible comparar >", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
+				ast.SetError(": No es posible comparar >", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 			}
 		}
 	case "<=":
@@ -186,7 +186,7 @@ func (operacion BinaryOperation) Ejecutar(ast *environment.AST, env interface{})
 				r2 := fmt.Sprintf("%v", op2.Valor)
 				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: r1 <= r2}
 			} else {
-				ast.SetError("ERROR: No es posible comparar <=", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
+				ast.SetError(": No es posible comparar <=", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 			}
 		}
 	case ">=":
@@ -207,7 +207,7 @@ func (operacion BinaryOperation) Ejecutar(ast *environment.AST, env interface{})
 				r2 := fmt.Sprintf("%v", op2.Valor)
 				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: r1 >= r2}
 			} else {
-				ast.SetError("ERROR: No es posible comparar >=", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
+				ast.SetError(": No es posible comparar >=", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 			}
 		}
 	case "==":
@@ -215,7 +215,7 @@ func (operacion BinaryOperation) Ejecutar(ast *environment.AST, env interface{})
 			if op1.Tipo == op2.Tipo {
 				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: op1.Valor == op2.Valor}
 			} else {
-				ast.SetError("ERROR: No es posible realziar la igualdad", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
+				ast.SetError(": No es posible realziar la igualdad", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 			}
 		}
 	case "!=":
@@ -223,7 +223,7 @@ func (operacion BinaryOperation) Ejecutar(ast *environment.AST, env interface{})
 			if op1.Tipo == op2.Tipo {
 				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: op1.Valor != op2.Valor}
 			} else {
-				ast.SetError("ERROR: No es posible realizar la desigualdad", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
+				ast.SetError(": No es posible realizar la desigualdad", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 			}
 		}
 	case "&&":
@@ -231,7 +231,7 @@ func (operacion BinaryOperation) Ejecutar(ast *environment.AST, env interface{})
 			if (op1.Tipo == environment.BOOLEAN) && (op2.Tipo == environment.BOOLEAN) {
 				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: op1.Valor.(bool) && op2.Valor.(bool)}
 			} else {
-				ast.SetError("ERROR: tipo no compatible para realizar el AND", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
+				ast.SetError("El tipo no compatible para realizar el AND", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 			}
 		}
 	case "||":
@@ -239,7 +239,7 @@ func (operacion BinaryOperation) Ejecutar(ast *environment.AST, env interface{})
 			if (op1.Tipo == environment.BOOLEAN) && (op2.Tipo == environment.BOOLEAN) {
 				return environment.Symbol{Lin: operacion.Lin, Col: operacion.Col, Tipo: environment.BOOLEAN, Valor: op1.Valor.(bool) || op2.Valor.(bool)}
 			} else {
-				ast.SetError("ERROR: tipo no compatible para realizar el OR", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
+				ast.SetError("El tipo no compatible para realizar el OR", operacion.Col, operacion.Lin, env.(environment.Environment).GetEntorno())
 			}
 		}
 	}

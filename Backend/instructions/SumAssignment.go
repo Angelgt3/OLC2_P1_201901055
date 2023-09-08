@@ -3,7 +3,6 @@ package instructions
 import (
 	"Backend/environment"
 	"Backend/interfaces"
-	"fmt"
 )
 
 type SumAssigment struct {
@@ -37,9 +36,12 @@ func (p SumAssigment) Ejecutar(ast *environment.AST, env interface{}) interface{
 	} else if variable.Tipo == environment.INTEGER && result.Tipo == environment.INTEGER {
 		result.Valor = variable.Valor.(int) + result.Valor.(int)
 		result.Tipo = environment.INTEGER
+		/*} else if variable.Tipo == environment.STRING && result.Tipo == environment.STRING {
+		result.Valor = strconv.Itoa(variable.Valor.(int)) + strconv.Itoa(result.Valor.(int))
+		result.Tipo = environment.STRING
+		*/
 	} else {
-
-		fmt.Println("No se puedo realizar la suma")
+		ast.SetError("No se puedo realizar la suma", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
 		return nil
 	}
 	//modificar la variable si se puede

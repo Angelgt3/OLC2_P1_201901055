@@ -82,7 +82,7 @@ func (env Environment) SetVariable(id string, value Symbol) Symbol {
 				return variable
 			} else {
 				if !tmpEnv.mutable_variable[id] {
-					fmt.Println("La variable que quiere modificar es inmutable")
+					fmt.Println("La variable ", id, "es inmutable")
 				} else {
 					fmt.Println("El tipo de dato es incorrecto")
 				}

@@ -3,7 +3,6 @@ package instructions
 import (
 	"Backend/environment"
 	"Backend/interfaces"
-	"fmt"
 )
 
 type Switch struct {
@@ -73,7 +72,9 @@ func (p Cases) Ejecutar(ast *environment.AST, env interface{}, condicion environ
 				if valor, ok := trasferencia.(string); ok && valor == "break" {
 					return true //se sale del case
 				} else if valor, ok := trasferencia.(string); ok && valor == "continue" {
-					fmt.Println("Error continue sin motivo")
+					ast.SetError("Utilizacion de la instruccion continue sin motivo", p.Col, p.Lin, env.(environment.Environment).GetEntorno())
+				} else {
+					return trasferencia
 				}
 			}
 		}

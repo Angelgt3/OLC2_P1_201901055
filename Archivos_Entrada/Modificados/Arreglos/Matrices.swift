@@ -1,5 +1,5 @@
 // Se le agrega espacios para no que lo detecte como character
-// se cambia el out+= "valor" -> out= out + "valor" (solo en cadenas)
+
 func printArrayStr(_ arr: [String]) {
     var out = " ["
     for i in 0...4 {

@@ -1,6 +1,5 @@
 // No se realizo parametro inout
 //Se agregaron espacios para que no lo detectara como character
-// se cambia el out+= "valor" -> out= out + "valor" (solo en cadenas)
 
 // Algoritmo de ordenamiento por intercambio (Bubble Sort)
 func ordIntercambio(_ arr: [Int]) -> [Int] {

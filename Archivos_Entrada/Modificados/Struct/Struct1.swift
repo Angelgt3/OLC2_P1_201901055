@@ -1,3 +1,6 @@
+//Se quito el struct sobre un struct 
+//Se quito el vector dentro del struct
+//Se quito la funcion que retorna una estructura 
 struct StructArr {
     var datos: Float
 }
@@ -16,22 +19,18 @@ struct Personaje {
     var nombre: String
     var edad: Int
     var descripcion: String
-    var carro: Carro
-    var numeros: StructArr
-}
-
-func nuevoCentro(nombre: String) -> CentroTuristico {
-    return CentroTuristico(nombre: nombre)
+    //var carro: Carro
+    //var numeros: StructArr
 }
 
 print("*******************STRUCTS")
 
-let centro1 = nuevoCentro(nombre: "Volcan de pacaya")
-let centro2 = nuevoCentro(nombre: "Rio dulce")
-let centro3 = nuevoCentro(nombre: "Laguna Luchoa")
-let centro4 = nuevoCentro(nombre: "Playa Blanca")
-let centro5 = nuevoCentro(nombre: "Antigua Guatemala")
-let centro6 = nuevoCentro(nombre: "Lago de Atitlan")
+let centro1 = CentroTuristico(nombre: "Volcan de pacaya")
+let centro2 = CentroTuristico(nombre: "Rio dulce")
+let centro3 = CentroTuristico(nombre: "Laguna Luchoa")
+let centro4 = CentroTuristico(nombre: "Playa Blanca")
+let centro5 = CentroTuristico(nombre: "Antigua Guatemala")
+let centro6 = CentroTuristico(nombre: "Lago de Atitlan")
 
 print("El nombre del Centro turistico 1 es: ", centro1.nombre)
 print("El nombre del Centro turistico 2 es: ", centro2.nombre)
@@ -40,25 +39,21 @@ print("El nombre del Centro turistico 4 es: ", centro4.nombre)
 print("El nombre del Centro turistico 5 es: ", centro5.nombre)
 print("El nombre del Centro turistico 6 es: ", centro6.nombre)
 
-print("*******************CREANDO STRUCTS COMPUESTO")
-
 let newCarro = Carro(placa: "090PLO", color: "gris", tipo: "mecanico")
-var nums = StructArr(datos: 0.0)
+//var nums = StructArr(datos: 0.0)
 
 var p1 = Personaje(
     nombre: "Jose",
     edad: 18,
-    descripcion: "No hace nada",
-    carro: newCarro,
-    numeros: nums
+    descripcion: "No hace nada"
 )
 
-print("Persona nombre: ", p1.nombre, ", edad: ", p1.edad, ", carroTipo: ", p1.carro.tipo, ", numeros: ", p1.numeros.datos)
+print("Persona nombre: ", p1.nombre, ", edad: ", p1.edad)
 
-var nums2 = StructArr(datos: Float("23.43"))
-p1.numeros = nums2
+//var nums2 = StructArr(datos: Float("23.43"))
+//p1.numeros = nums2
 
-print("Persona nombre: ", p1.nombre, ", edad: ", p1.edad, ", carroTipo: ", p1.carro.tipo, ", nuevos numeros: ", p1.numeros.datos)
+print("Persona nombre: ", p1.nombre, ", edad: ", p1.edad)
 
 /*
 *******************STRUCTS

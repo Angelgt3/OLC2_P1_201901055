@@ -75,7 +75,7 @@ structCreation returns[interfaces.Instruction dec]
 ;
 
 listStructDec returns[[]interface{} l]
-: list=listStructDec COMA VAR ID DOSP typestmt {
+: list=listStructDec VAR ID DOSP typestmt {
         var arr []interface{}
         newParams := environment.NewStructType($ID.text, $typestmt.type)
         arr = append($list.l, newParams)
@@ -97,6 +97,7 @@ funcstmt returns [interfaces.Instruction fun]
 | FUNC ID PARIZQ listParamsFunc PARDER LLAVEIZQ block LLAVEDER                      { $fun = instructions.NewDeclarationFunc($FUNC.line, $FUNC.pos, $ID.text, environment.NULL, $listParamsFunc.lpf, $block.blk) }
 | FUNC ID  PARIZQ PARDER FLECHA typestmt LLAVEIZQ block LLAVEDER                    { $fun = instructions.NewDeclarationFunc($FUNC.line, $FUNC.pos, $ID.text, $typestmt.type,  nil ,$block.blk) }
 | FUNC ID PARIZQ listParamsFunc PARDER FLECHA typestmt LLAVEIZQ block LLAVEDER      { $fun = instructions.NewDeclarationFunc($FUNC.line, $FUNC.pos, $ID.text, $typestmt.type, $listParamsFunc.lpf, $block.blk) }
+//| FUNC ID PARIZQ listParamsFunc PARDER FLECHA LLAVEIZQ block LLAVEDER            { $fun = instructions.NewDeclarationFunc($FUNC.line, $FUNC.pos, $ID.text, environment.STRUCT, $listParamsFunc.lpf, $block.blk) }
 ;
 
 listParamsFunc returns[[]interface{} lpf]
